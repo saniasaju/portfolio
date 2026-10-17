@@ -1,0 +1,228 @@
+
+/* ============================================================
+   SANIA SAJU — PORTFOLIO
+   HOME PAGE STACKING
+
+   RESPONSIBILITIES
+   ------------------------------------------------------------
+   - Define the stacking order of homepage sections
+   - Preserve overlapping section transitions
+   - Support sticky and pinned sections
+   - Apply scroll-driven shadow overlays
+   - Remain compatible with Lenis smooth scrolling
+
+   SECTION-SPECIFIC LAYOUTS BELONG IN:
+   ------------------------------------------------------------
+   hero.css
+   projects.css
+   pages.css
+   about.css
+   contact.css
+
+============================================================ */
+
+
+/* ============================================================
+   HOME PAGE
+============================================================ */
+
+main {
+    display: block;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   SECTION HOSTS
+
+   Each custom section is a positioned block.
+
+   This allows z-index and overlapping margins to work
+   consistently without changing the document flow.
+
+   Lenis scrolls the document normally, so these sections
+   must remain part of the natural page layout.
+============================================================ */
+
+projects-section,
+pages-section,
+about-section,
+contact-section {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   HERO → PROJECTS
+
+   Hero:
+   - Sticky positioning is controlled in hero.css.
+   - Remains underneath the Projects section.
+
+   Projects:
+   - Enters from the bottom.
+   - Covers the Hero as the document scrolls.
+
+   Lenis smooths the movement without altering the stack.
+============================================================ */
+
+.hero {
+    z-index: 1;
+}
+
+
+projects-section {
+    z-index: 20;
+}
+
+
+/* ============================================================
+   PROJECTS → PAGES
+
+   Pages begins 100vh before the end of Projects.
+
+   This creates the overlapping transition in which
+   Project 03 moves away to reveal the Pages section.
+
+   Projects remains above Pages during this transition.
+
+   IMPORTANT:
+   Preserve the negative margin because the Pages
+   scrolling sequence depends on this overlap.
+============================================================ */
+
+pages-section {
+    z-index: 10;
+
+    margin-top: -100vh;
+}
+
+
+/* ============================================================
+   PAGES → ABOUT
+
+   About overlaps the final 250vh of Pages, preserving the
+   original Pixels boundary and its pinned backdrop during
+   About's scroll-driven entrance.
+
+   The pinned viewport and vertical column animations
+   are handled independently in pages.css and
+   pages.js.
+
+   Lenis does not replace those interactions.
+============================================================ */
+
+about-section {
+    z-index: 30;
+
+    margin-top: -250vh;
+}
+
+
+/* ============================================================
+   ABOUT → CONTACT
+
+   Contact overlaps About's final viewport so it rises over
+   the settled content as the user continues scrolling.
+
+   Contact stays in the normal document flow.
+
+   The visual transition and internal animations remain
+   controlled by contact.css and contact.js.
+============================================================ */
+
+contact-section {
+    z-index: 40;
+
+    margin-top: -100vh;
+}
+
+
+/* ============================================================
+   STACKED SECTION SHADOWS
+
+   Each section being covered receives a black overlay.
+
+   The overlay opacity is controlled by script.js:
+
+   --stack-shadow-opacity
+
+   0    = no shadow
+   0.3  = 30% black
+   0.6  = 60% black
+
+   The value updates continuously with scroll progress.
+============================================================ */
+
+.hero,
+projects-section,
+pages-section,
+about-section {
+    --stack-shadow-opacity: 0;
+}
+
+
+/* ============================================================
+   SHADOW LAYERS
+
+   The overlays are positioned above section content.
+
+   pointer-events: none ensures they never intercept
+   clicks, links or other interactions.
+
+   IMPORTANT FOR LENIS:
+   No additional CSS opacity transition is applied.
+
+   Lenis already smooths document scrolling, and
+   script.js calculates the opacity from section positions.
+
+   Removing the 120ms transition keeps the shadow
+   synchronized with the visible scroll movement.
+============================================================ */
+
+.hero::after,
+projects-section::after,
+pages-section::after,
+about-section::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background: #070707;
+
+    opacity: var(--stack-shadow-opacity);
+
+    pointer-events: none;
+
+    transition: none;
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+
+   Reduced-motion navigation is handled in script.js.
+
+   Shadow effects remain position-based rather than
+   animated independently.
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero::after,
+    projects-section::after,
+    pages-section::after,
+    about-section::after {
+        transition: none;
+    }
+
+}

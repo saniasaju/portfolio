@@ -1,0 +1,1325 @@
+/* ============================================================
+   SANIA SAJU — PORTFOLIO
+   CONTACT SECTION
+============================================================ */
+
+
+/* ============================================================
+   HOST
+============================================================ */
+
+contact-section {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+
+    background: var(--gray);
+
+    color: var(--black);
+}
+
+
+
+/* ============================================================
+   CONTACT
+============================================================ */
+
+.contact {
+    --contact-transition-duration:
+        900ms;
+
+    --contact-transition-easing:
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+
+    --contact-panel-background:
+        #3F3F3F;
+
+
+    position: relative;
+
+    width: 100%;
+    height: var(--contact-viewport-height, 100vh);
+
+    overflow: hidden;
+
+    background: var(--gray);
+
+    color: var(--black);
+}
+
+
+
+/* ============================================================
+   CONTACT MAIN
+
+   STATE 1 = 100%
+   STATE 2 = 60%
+============================================================ */
+
+.contact__main {
+    position: relative;
+
+    z-index: 1;
+
+    display: grid;
+
+    grid-template-rows:
+        auto
+        minmax(0, 1fr)
+        auto;
+
+    width: 100%;
+    height: 100%;
+
+    padding:
+        var(--space-07);
+
+    overflow: hidden;
+
+    background:
+        var(--gray);
+
+    transition:
+        width
+        var(--contact-transition-duration)
+        var(--contact-transition-easing);
+}
+
+
+
+/* ============================================================
+   CONTACT MAIN — FORM OPEN
+============================================================ */
+
+.contact--form-open
+.contact__main {
+    width: 60%;
+}
+
+
+
+/* ============================================================
+   CONTACT NAVBAR — INITIAL
+============================================================ */
+
+.contact .navbar {
+    position: relative;
+
+    z-index: 3;
+
+    width: 100%;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(-64px);
+
+    pointer-events: none;
+
+    will-change:
+        transform,
+        opacity;
+
+    transition:
+        transform
+        800ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        opacity
+        450ms
+        ease-out;
+}
+
+
+
+/* ============================================================
+   CONTACT NAVBAR — REVEALED
+============================================================ */
+
+.contact.is-navbar-visible
+.navbar {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+
+
+/* ============================================================
+   LOCAL NAVIGATION
+============================================================ */
+
+.contact .nav {
+    position: relative;
+
+    display: flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    width: 100%;
+}
+
+
+.contact .nav__link {
+    color:
+        var(--black);
+}
+
+
+
+/* ============================================================
+   CONTACT CONTENT
+============================================================ */
+
+.contact__content {
+    display: flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width: 0;
+    min-height: 0;
+
+    text-align:
+        center;
+}
+
+
+
+/* ============================================================
+   CONTACT TITLE
+============================================================ */
+
+.contact__title {
+    margin: 0;
+
+    font-family:
+        var(--h2-family);
+
+    font-size:
+        var(--h2-size);
+
+    font-weight:
+        var(--h2-weight);
+
+    line-height:
+        var(--h2-line-height);
+
+    white-space:
+        nowrap;
+}
+
+
+
+/* ============================================================
+   CONTACT TEXT
+============================================================ */
+
+.contact__text {
+    margin:
+        var(--space-05)
+        0
+        var(--space-04);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+
+    white-space:
+        nowrap;
+}
+
+
+
+/* ============================================================
+   CONTACT CTA
+============================================================ */
+
+.contact__open {
+    appearance: none;
+
+    display: inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        var(--space-04);
+
+    width:
+        fit-content;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+
+    background:
+        transparent;
+
+    color:
+        var(--black);
+
+    font-family:
+        var(--info-family);
+
+    font-size:
+        var(--info-size);
+
+    font-weight:
+        var(--info-weight);
+
+    font-style:
+        var(--info-style);
+
+    line-height:
+        var(--info-line-height);
+
+    cursor:
+        pointer;
+}
+
+
+
+/* ============================================================
+   CONTACT FOOTER — INITIAL STATE
+============================================================ */
+
+.contact__footer {
+    position: relative;
+
+    z-index: 3;
+
+    display: flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    width: 100%;
+
+    color:
+        var(--black);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight: 400;
+
+    line-height:
+        var(--body-line-height);
+
+    text-transform:
+        uppercase;
+
+    white-space:
+        nowrap;
+
+
+    /* --------------------------------------------------------
+       ENTRANCE
+    --------------------------------------------------------- */
+
+    opacity: 0;
+
+    visibility:
+        hidden;
+
+    transform:
+        translateY(64px);
+
+    pointer-events:
+        none;
+
+    will-change:
+        transform,
+        opacity;
+
+    transition:
+        transform
+        800ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        opacity
+        450ms
+        ease-out;
+}
+
+
+/* ============================================================
+   CONTACT FOOTER — REVEALED
+============================================================ */
+
+.contact.is-navbar-visible
+.contact__footer {
+    opacity: 1;
+
+    visibility:
+        visible;
+
+    transform:
+        translateY(0);
+
+    pointer-events:
+        auto;
+}
+
+
+/* ============================================================
+   CONTACT FOOTER LINKS
+============================================================ */
+
+.contact__footer-link {
+    appearance: none;
+
+    display:
+        inline-block;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+
+    background:
+        transparent;
+
+    color:
+        inherit;
+
+    font:
+        inherit;
+
+    text-transform:
+        inherit;
+
+    text-decoration:
+        none;
+
+    cursor:
+        pointer;
+
+    transition:
+        opacity
+        0.3s
+        ease-in-out,
+
+        scale
+        0.3s
+        ease-in-out;
+}
+
+
+.contact__footer-link:hover {
+    opacity: 0.7;
+
+    scale: 1.02;
+}
+
+
+
+/* ============================================================
+   COPY EMAIL
+============================================================ */
+
+.contact__email-copy {
+    position:
+        relative;
+}
+
+
+
+/* ============================================================
+   COPY EMAIL FEEDBACK
+============================================================ */
+
+.contact .copy-feedback {
+    position: absolute;
+
+    left: 50%;
+    bottom:
+        calc(100% + 12px);
+
+    z-index: 10;
+
+    padding:
+        var(--space-02)
+        var(--space-03);
+
+    transform:
+        translateX(-50%)
+        translateY(4px);
+
+    background:
+        var(--black);
+
+    color:
+        var(--paper);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    text-transform:
+        none;
+
+    white-space:
+        nowrap;
+
+    opacity: 0;
+
+    visibility:
+        hidden;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity
+        200ms
+        ease,
+
+        transform
+        200ms
+        ease,
+
+        visibility
+        0s
+        linear
+        200ms;
+}
+
+
+.contact
+.copy-feedback.is-visible {
+    opacity: 1;
+
+    visibility:
+        visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+    transition:
+        opacity
+        200ms
+        ease,
+
+        transform
+        200ms
+        ease,
+
+        visibility
+        0s;
+}
+
+
+
+/* ============================================================
+   CONTACT PANEL
+============================================================ */
+
+.contact-panel {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    z-index: 20;
+
+    width: 40%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background:
+        var(--contact-panel-background);
+
+    color:
+        var(--paper);
+
+    transform:
+        translateX(100%);
+
+    visibility:
+        hidden;
+
+    pointer-events:
+        none;
+
+    transition:
+        transform
+        var(--contact-transition-duration)
+        var(--contact-transition-easing),
+
+        visibility
+        0s
+        linear
+        var(--contact-transition-duration);
+}
+
+
+
+/* ============================================================
+   CONTACT PANEL — OPEN
+============================================================ */
+
+.contact-panel.is-open {
+    transform:
+        translateX(0);
+
+    visibility:
+        visible;
+
+    pointer-events:
+        auto;
+
+    transition:
+        transform
+        var(--contact-transition-duration)
+        var(--contact-transition-easing),
+
+        visibility
+        0s;
+}
+
+
+
+/* ============================================================
+   CLOSE BUTTON
+============================================================ */
+
+.contact-panel__close {
+    position: absolute;
+
+    top:
+        var(--space-07);
+
+    right:
+        var(--space-07);
+
+    z-index: 3;
+
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width: 40px;
+    height: 40px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+
+    background:
+        transparent;
+
+    cursor:
+        pointer;
+}
+
+
+.contact-panel__close img {
+    display: block;
+
+    width: var(--h2-size);
+    height: var(--h2-size);
+    flex-shrink: 0;
+
+    object-fit:
+        contain;
+
+    pointer-events:
+        none;
+}
+
+
+
+/* ============================================================
+   CONTACT PANEL INNER
+============================================================ */
+
+.contact-panel__inner {
+    display: grid;
+
+    grid-template-rows:
+        auto
+        minmax(0, 1fr);
+
+    align-content:
+        space-between;
+
+    width: 100%;
+    height: 100%;
+
+    padding:
+        var(--space-07);
+
+    overflow:
+        hidden;
+}
+
+
+
+/* ============================================================
+   CONTACT FORM TITLE
+============================================================ */
+
+.contact-panel__title {
+    margin: 0;
+
+    padding-bottom:
+        var(--space-08);
+
+    font-family:
+        var(--h3-family);
+
+    font-size: 40px;
+
+    font-weight:
+        var(--h3-weight);
+
+    line-height:
+        var(--h3-line-height);
+}
+
+
+
+/* ============================================================
+   CONTACT FORM
+============================================================ */
+
+.contact-form {
+    display: grid;
+
+    /*
+       Name
+       Email
+       Subject
+       Message
+       Submit
+    */
+
+    grid-template-rows:
+        repeat(
+            5,
+            auto
+        );
+
+    align-content:
+        space-between;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* ============================================================
+   FORM FIELD
+============================================================ */
+
+.contact-form__field {
+    position: relative;
+
+    display: flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        var(--space-03);
+
+    width: 100%;
+
+    padding-bottom:
+        var(--space-06);
+}
+
+
+.contact-form__field--message {
+    padding-bottom: 0;
+}
+
+
+
+/* ============================================================
+   FORM LABEL
+============================================================ */
+
+.contact-form__label {
+    color:
+        var(--subtle);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+
+/* ============================================================
+   FORM INPUTS
+============================================================ */
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+
+    margin: 0;
+
+    border: 0;
+
+    border-bottom:
+        1px
+        solid
+        var(--paper);
+
+    border-radius: 0;
+
+    outline: none;
+
+    background:
+        transparent;
+
+    color:
+        var(--paper);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+
+    caret-color:
+        var(--paper);
+}
+
+
+
+/* ============================================================
+   TEXT INPUT
+============================================================ */
+
+.contact-form input {
+    height: 32px;
+
+    padding:
+        0
+        0
+        var(--space-03);
+}
+
+
+
+/* ============================================================
+   BROWSER AUTOFILL
+
+   Prevent Chrome / Edge / Safari from adding their own
+   autofill background after selecting a saved name or email.
+============================================================ */
+
+.contact-form input:-webkit-autofill,
+.contact-form input:-webkit-autofill:hover,
+.contact-form input:-webkit-autofill:focus,
+.contact-form input:-webkit-autofill:active {
+    -webkit-text-fill-color:
+        var(--paper);
+
+    caret-color:
+        var(--paper);
+
+    -webkit-box-shadow:
+        0
+        0
+        0
+        1000px
+        var(--contact-panel-background)
+        inset;
+
+    box-shadow:
+        0
+        0
+        0
+        1000px
+        var(--contact-panel-background)
+        inset;
+
+    border-bottom:
+        1px
+        solid
+        var(--paper);
+
+    transition:
+        background-color
+        9999s
+        ease-out
+        0s;
+}
+
+
+.contact-form input:autofill {
+    background:
+        var(--contact-panel-background);
+
+    color:
+        var(--paper);
+}
+
+
+
+/* ============================================================
+   INPUT FOCUS
+============================================================ */
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-bottom-width:
+        2px;
+}
+
+
+
+/* ============================================================
+   MESSAGE
+============================================================ */
+
+.contact-form__message {
+    height: 64px;
+    min-height: 64px;
+    max-height: 64px;
+
+    padding:
+        0
+        var(--space-04)
+        var(--space-03)
+        0;
+
+    resize:
+        none;
+
+    overflow-x:
+        hidden;
+
+    overflow-y:
+        auto;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        var(--paper)
+        transparent;
+}
+
+
+
+/* ============================================================
+   CHARACTER COUNTERS
+============================================================ */
+
+.contact-form__count {
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    opacity: 0;
+
+    color:
+        var(--paper);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity
+        var(--interaction-duration)
+        var(--interaction-easing);
+}
+
+
+
+/* Counter appears around 80% */
+
+.contact-form__count.is-visible {
+    opacity: 0.6;
+}
+
+
+
+/* Stronger warning close to limit */
+
+.contact-form__count.is-near-limit {
+    opacity: 1;
+}
+
+
+
+/* ============================================================
+   MESSAGE SCROLLBAR
+============================================================ */
+
+.contact-form__message::-webkit-scrollbar {
+    width: 10px;
+
+    background:
+        transparent;
+}
+
+
+.contact-form__message::-webkit-scrollbar-track {
+    background:
+        transparent;
+}
+
+
+.contact-form__message::-webkit-scrollbar-thumb {
+    background-color:
+        var(--paper);
+
+    border:
+        3px
+        solid
+        transparent;
+
+    background-clip:
+        content-box;
+}
+
+
+.contact-form__message::-webkit-scrollbar-button {
+    display: block;
+
+    width: 10px;
+    height: 10px;
+
+    background-color:
+        transparent;
+
+    background-repeat:
+        no-repeat;
+
+    background-position:
+        center;
+}
+
+
+
+/* ============================================================
+   SCROLLBAR — TOP ARROW
+============================================================ */
+
+.contact-form__message
+::-webkit-scrollbar-button:vertical:decrement {
+    background-image:
+
+        linear-gradient(
+            135deg,
+            transparent 50%,
+            var(--paper) 50%
+        ),
+
+        linear-gradient(
+            225deg,
+            var(--paper) 50%,
+            transparent 50%
+        );
+
+    background-position:
+        1px 5px,
+        5px 5px;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+}
+
+
+
+/* ============================================================
+   SCROLLBAR — BOTTOM ARROW
+============================================================ */
+
+.contact-form__message
+::-webkit-scrollbar-button:vertical:increment {
+    background-image:
+
+        linear-gradient(
+            45deg,
+            transparent 50%,
+            var(--paper) 50%
+        ),
+
+        linear-gradient(
+            315deg,
+            var(--paper) 50%,
+            transparent 50%
+        );
+
+    background-position:
+        1px 1px,
+        5px 1px;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+}
+
+
+
+/* ============================================================
+   SEND CTA
+============================================================ */
+
+.contact-form__submit {
+    appearance: none;
+
+    display: inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        var(--space-04);
+
+    width:
+        fit-content;
+
+    margin: 0;
+
+    padding-top:
+        var(--space-08);
+
+    border: 0;
+
+    background:
+        transparent;
+
+    color:
+        var(--paper);
+
+    font-family:
+        var(--info-family);
+
+    font-size:
+        var(--info-size);
+
+    font-weight:
+        var(--info-weight);
+
+    font-style:
+        var(--info-style);
+
+    line-height:
+        var(--info-line-height);
+
+    cursor:
+        pointer;
+}
+
+
+.contact-form__submit:disabled {
+    opacity: 0.5;
+
+    cursor:
+        default;
+
+    pointer-events:
+        none;
+}
+
+
+
+/* ============================================================
+   SPAM HONEYPOT
+============================================================ */
+
+.contact-form__honeypot {
+    position: absolute;
+
+    left: -9999px;
+
+    width: 1px;
+    height: 1px;
+
+    overflow:
+        hidden;
+
+    opacity: 0;
+
+    pointer-events:
+        none;
+}
+
+
+
+/* ============================================================
+   WHITE ARROW IN DARK PANEL
+============================================================ */
+
+.contact-panel
+.portfolio-arrow img {
+    filter:
+        invert(1);
+}
+
+
+
+/* ============================================================
+   KEYBOARD FOCUS
+============================================================ */
+
+.contact__open:focus-visible,
+.contact__footer-link:focus-visible,
+.contact-panel__close:focus-visible,
+.contact-form__submit:focus-visible {
+    outline:
+        2px
+        solid
+        currentColor;
+
+    outline-offset:
+        var(--space-02);
+}
+
+
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    .contact__main,
+    .contact-panel,
+    .contact .navbar,
+    .contact__footer,
+    .contact .copy-feedback {
+
+        transition:
+            none !important;
+
+    }
+
+
+    .contact .navbar {
+        opacity: 1;
+
+        visibility:
+            visible;
+
+        transform:
+            none;
+
+        pointer-events:
+            auto;
+    }
+
+    .contact__footer {
+        opacity: 1;
+
+        visibility:
+            visible;
+
+        transform:
+            none;
+
+        pointer-events:
+            auto;
+    }
+
+    .contact .copy-feedback {
+        transform:
+            translateX(-50%);
+    }
+
+}

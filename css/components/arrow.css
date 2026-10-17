@@ -1,0 +1,194 @@
+/* ============================================================ 
+   PORTFOLIO ARROW COMPONENT
+============================================================ */
+
+
+/* ============================================================ 
+   HOST
+============================================================ */
+
+.portfolio-arrow {
+    position: relative;
+
+    display: inline-block;
+
+    flex-shrink: 0;
+
+    overflow: visible;
+
+    vertical-align: middle;
+}
+
+
+/* ============================================================ 
+   FRAMES
+============================================================ */
+
+.portfolio-arrow img {
+    position: absolute;
+
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: none;
+
+    opacity: 0;
+
+    pointer-events: none;    
+}
+
+
+/* ============================================================ 
+   GROWING
+   1 → 2 → 3
+============================================================ */
+
+.portfolio-arrow[data-motion="growing"] img {
+    transition-timing-function:
+        cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+
+/* ============================================================ 
+   SHRINKING
+   3 → 2 → 1
+============================================================ */
+
+.portfolio-arrow[data-motion="shrinking"] img {
+    transition-timing-function:
+        cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+
+/* ============================================================ 
+   FRAME VISIBILITY
+============================================================ */
+
+.portfolio-arrow[data-frame="1"]
+.portfolio-arrow__frame--1 {
+    opacity: 1;
+}
+
+
+.portfolio-arrow[data-frame="2"]
+.portfolio-arrow__frame--2 {
+    opacity: 1;
+}
+
+
+.portfolio-arrow[data-frame="3"]
+.portfolio-arrow__frame--3 {
+    opacity: 1;
+}
+
+
+/* ============================================================ 
+   RIGHT
+
+   Native orientation of the SVG.
+
+   The left edge remains fixed while the arrow extends right.
+============================================================ */
+
+.portfolio-arrow--right {
+    width: 56px;
+    height: 15px;
+}
+
+
+.portfolio-arrow--right img {
+    top: 0;
+    left: 0;
+
+    transform: none;
+}
+
+
+/* ============================================================ 
+   LEFT
+
+   The right edge remains fixed while the arrow extends left.
+============================================================ */
+
+.portfolio-arrow--left {
+    width: 56px;
+    height: 15px;
+}
+
+
+.portfolio-arrow--left img {
+    top: 0;
+    right: 0;
+    left: auto;
+
+    transform: rotate(180deg);
+
+    transform-origin: center;
+}
+
+
+/* ============================================================ 
+   DOWN
+
+   Native horizontal SVG rotated 90°.
+
+   The top remains fixed while the arrow extends downward.
+============================================================ */
+
+.portfolio-arrow--down {
+    width: 15px;
+    height: 56px;
+}
+
+
+.portfolio-arrow--down img {
+    top: 0;
+    left: 0;
+
+    transform:
+        translateX(15px)
+        rotate(90deg);
+
+    transform-origin: top left;
+}
+
+
+/* ============================================================ 
+   UP
+
+   The bottom remains fixed while the arrow extends upward.
+
+   56px is the maximum native arrow length, not a scale.
+============================================================ */
+
+.portfolio-arrow--up {
+    width: 15px;
+    height: 56px;
+}
+
+
+.portfolio-arrow--up img {
+    top: 0;
+    left: 0;
+
+    transform:
+        translate(15px, 56px)
+        rotate(-90deg);
+
+    transform-origin: top left;
+}
+
+
+/* ============================================================ 
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .portfolio-arrow img {
+        transition: none;
+    }
+
+}

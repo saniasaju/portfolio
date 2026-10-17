@@ -1,0 +1,128 @@
+/* ============================================================
+   SANIA SAJU — PORTFOLIO
+   NAVBAR COMPONENT
+============================================================ */
+
+
+/* ============================================================
+   CUSTOM ELEMENT HOST
+============================================================ */
+
+portfolio-navbar {
+    display: block;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   NAVBAR WRAPPER
+============================================================ */
+
+.portfolio-navbar {
+    width: 100%;
+
+    padding: var(--space-07);
+
+    background: transparent;
+
+    color: var(--black, #070707);
+}
+
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
+.nav {
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ============================================================
+   NAVIGATION LINKS
+============================================================ */
+
+.nav__links {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   LINK
+============================================================ */
+
+.nav__link {
+    position: relative;
+
+    color: inherit;
+
+    font-family:
+        "General Sans",
+        sans-serif;
+
+    font-size: var(--body-size, 16px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    transition:
+        scale 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
+}
+
+
+/* ============================================================
+   HOVER
+============================================================ */
+
+.nav__link:hover {
+    opacity: 0.7;
+
+    scale: 1.02;
+}
+
+
+/* ============================================================
+   KEYBOARD FOCUS
+============================================================ */
+
+.nav__link:focus-visible {
+    outline:
+        1px solid
+        currentColor;
+
+    outline-offset: 6px;
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .nav__link {
+        transition: none;
+    }
+
+
+    .nav__link:hover {
+        scale: 1;
+    }
+
+}

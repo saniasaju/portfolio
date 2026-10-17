@@ -1,0 +1,2064 @@
+/* ============================================================
+   SANIA SAJU — CAMPINN CASE STUDY
+   DESKTOP VERSION
+
+   Reference behaviour:
+   - Sticky shared navbar
+   - Hero fills viewport below navbar
+   - Case study settles below navbar
+   - Contents stays stationary
+   - Right content becomes the internal scroller
+============================================================ */
+
+
+/* ============================================================
+   01 — PAGE TOKENS
+============================================================ */
+
+:root {
+
+    --campinn-page-padding:
+        var(--space-10);
+
+    --campinn-column-gap:
+        var(--space-08);
+
+    --campinn-section-gap:
+        var(--space-10);
+
+    --campinn-heading-gap:
+        var(--space-07);
+
+    --campinn-navbar-height:
+        112px;
+
+    --campinn-deep-ink:
+        var(--black);
+
+    --campinn-muted-ink:
+        var(--muted);
+
+    --campinn-hero-block:
+        #D8D8D8;
+
+    --campinn-rule:
+        rgba(
+            7,
+            7,
+            7,
+            0.24
+        );
+
+    --campinn-card:
+        #EFEFEF;
+}
+
+
+/* ============================================================
+   02 — PAGE
+============================================================ */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body.campinn-page {
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+
+    background:
+        var(--paper);
+
+    color:
+        var(--campinn-deep-ink);
+}
+
+
+.campinn-case {
+    display: block;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   03 — PAGE NAVBAR
+============================================================ */
+
+.campinn-page__navbar {
+    position: sticky;
+
+    padding-left: var(--space-04);
+    padding-right: var(--space-04);
+
+    top: 0;
+
+    z-index: 1000;
+
+    display: block;
+
+    width: 100%;
+
+    background:
+        var(--paper);
+}
+
+
+/*
+   Homepage Hero CSS hides portfolio-navbar until the Hero
+   entrance completes. Case-study navbars must always remain
+   visible.
+*/
+
+body.campinn-page
+.campinn-page__navbar {
+    opacity: 1;
+    visibility: visible;
+
+    transform: none;
+
+    pointer-events: auto;
+}
+
+
+/* ============================================================
+   04 — HERO
+============================================================ */
+
+.campinn-hero {
+    position: relative;
+
+    width: 100%;
+
+    height:
+        calc(
+            100vh -
+            var(--campinn-navbar-height)
+        );
+
+    min-height: 0;
+
+    padding:
+        var(--space-10);
+
+    padding-top:
+        var(--space-06);
+
+    overflow: hidden;
+
+    background:
+        var(--paper);
+}
+
+
+.campinn-hero__content {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+.campinn-hero__grid {
+    display: flex;
+
+    align-items: stretch;
+    justify-content: space-between;
+
+    gap: 0;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+/* ============================================================
+   05 — HERO LEFT
+============================================================ */
+
+.campinn-hero__visual {
+    position: relative;
+
+    flex:
+        0
+        0
+        57%;
+
+    width: 57%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+.campinn-hero__title {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    min-height: 58%;
+
+    margin-bottom: 10%;
+
+    padding:
+        var(--space-06);
+
+    background:
+        var(--campinn-hero-block);
+
+    color:
+        var(--campinn-deep-ink);
+
+    font-family:
+        var(--h1-family);
+
+    font-size:
+        var(--h1-size);
+
+    font-weight:
+        var(--h1-weight);
+
+    line-height:
+        var(--h1-line-height);
+
+    letter-spacing:
+        var(--h1-letter-spacing);
+
+    white-space: nowrap;
+}
+
+/* ============================================================
+   HERO PHONE
+   Same height as the complete left visual container
+============================================================ */
+
+.campinn-hero__mockup {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    z-index: 3;
+
+    height: 100%;
+    width: auto;
+
+    aspect-ratio: 989 / 2000;
+
+    margin: 0;
+}
+
+/* ============================================================
+   CAMPINN — MOBILE MOCKUP
+============================================================ */
+
+.mobile-mockup {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    aspect-ratio: 989 / 2000;
+}
+
+
+/* ============================================================
+   MOBILE SCREEN
+============================================================ */
+
+/*
+   Original SVG:
+   989 × 2000
+
+   Screen opening:
+   x = 55
+   y = 48
+   w = 879
+   h = 1904
+*/
+
+.mobile-mockup__screen {
+    position: absolute;
+
+    /* Overlap the frame by 1px to hide fractional-pixel seams. */
+    left: calc(5.5612% - 1px);
+    top: calc(2.4% - 1px);
+
+    z-index: 1;
+
+    width: calc(88.8777% + 2px);
+    height: calc(95.2% + 2px);
+
+    overflow: hidden;
+
+    border-radius:
+        12.2% / 5.6%;
+
+    background: var(--black);
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   MOBILE VIDEO
+============================================================ */
+
+.mobile-mockup__video {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   MOBILE FRAME
+============================================================ */
+
+.mobile-mockup__frame {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+/* ============================================================
+   07 — HERO RIGHT
+============================================================ */
+
+.campinn-hero__info {
+    display: flex;
+
+    flex:
+        0
+        0
+        35%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+    justify-content: space-between;
+
+    width: 35%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+.campinn-hero__details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.campinn-hero__detail {
+    display: grid;
+
+    grid-template-columns:
+        118px
+        minmax(
+            0,
+            1fr
+        );
+
+    column-gap:
+        var(--space-06);
+
+    align-items: baseline;
+
+    width: 100%;
+}
+
+
+.campinn-hero__detail dt,
+.campinn-hero__detail dd {
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+.campinn-hero__detail dt {
+    color:
+        var(--campinn-muted-ink);
+}
+
+
+.campinn-hero__detail dd {
+    color:
+        var(--campinn-deep-ink);
+}
+
+
+.campinn-hero__bottom {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    margin-top: auto;
+}
+
+
+.campinn-hero__summary {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    margin: 0;
+}
+
+
+.campinn-hero__summary-title {
+    width: 100%;
+    max-width: 520px;
+
+    margin: 0;
+
+    color:
+        var(--campinn-deep-ink);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+.campinn-hero__summary p:not(
+    .campinn-hero__summary-title
+) {
+    width: 100%;
+    max-width: 540px;
+
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   CAMPINN CTA
+============================================================ */
+
+.campinn-cta {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: var(--space-04);
+
+    width: fit-content;
+
+    color: var(--black);
+
+    font-family: var(--info-family);
+    font-size: var(--info-size);
+    font-weight: var(--info-weight);
+    font-style: var(--info-style);
+    line-height: var(--info-line-height);
+
+    text-decoration: none;
+}
+
+
+/* ============================================================
+   FOCUS
+============================================================ */
+
+.campinn-cta:focus-visible {
+    outline:
+        2px solid
+        var(--black);
+
+    outline-offset:
+        var(--space-02);
+}
+
+
+/* ============================================================
+   09 — CASE STUDY
+============================================================ */
+
+.campinn-study {
+    position: relative;
+
+    width: 100%;
+
+    height:
+        calc(
+            100vh -
+            var(--campinn-navbar-height)
+        );
+
+    overflow: hidden;
+
+    background:
+        var(--paper);
+}
+
+
+.campinn-study__workspace {
+    display: grid;
+
+    grid-template-columns:
+        162px
+        minmax(
+            0,
+            1fr
+        );
+
+    width: 100%;
+    height: 100%;
+
+    padding: var(--space-08);
+    padding-bottom: var(--space-07);
+    padding-top: 0;
+
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   10 — SIDEBAR
+============================================================ */
+
+.campinn-study__sidebar {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+.campinn-study__contents-label {
+    margin:
+        0
+        0
+        var(--space-01);
+
+    color:
+        var(--campinn-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space: nowrap;
+}
+
+
+.campinn-study__toc {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap:
+        var(--space-01);
+}
+
+
+.campinn-study__toc-link {
+    position: relative;
+
+    display: inline-block;
+
+    width: fit-content;
+
+    margin: 0;
+    padding: 0;
+
+    color:
+        var(--campinn-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space: nowrap;
+
+    transition:
+        color
+        var(--interaction-duration)
+        var(--interaction-easing);
+}
+
+
+.campinn-study__toc-link.is-active,
+.campinn-study__toc-link[aria-current="true"] {
+    color:
+        var(--campinn-deep-ink);
+
+    font-weight:
+        500;
+}
+
+
+.campinn-study__toc-link:hover {
+    color:
+        var(--campinn-deep-ink);
+}
+
+
+.campinn-study__toc-link:focus-visible {
+    color:
+        var(--campinn-deep-ink);
+
+    outline:
+        1px solid
+        currentColor;
+
+    outline-offset:
+        6px;
+}
+
+/* ============================================================
+   CASE STUDIES
+============================================================ */
+
+.campinn-study__case-studies {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   CASE STUDIES NAV
+============================================================ */
+
+.campinn-study__case-study-nav {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: var(--space-01);
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   CASE STUDY LINK
+============================================================ */
+
+.campinn-study__case-study-link {
+    position: relative;
+
+    display: inline-block;
+
+    width: fit-content;
+
+    margin: 0;
+    padding: 0;
+
+    color:
+        var(--campinn-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space: nowrap;
+
+    transition:
+        color
+        var(--interaction-duration)
+        var(--interaction-easing);
+}
+
+
+/* ============================================================
+   CURRENT CASE STUDY
+============================================================ */
+
+.campinn-study__case-study-link.is-current,
+.campinn-study__case-study-link[aria-current="page"] {
+    color:
+        var(--campinn-deep-ink);
+
+    font-weight: 500;
+}
+
+
+/* ============================================================
+   HOVER
+============================================================ */
+
+.campinn-study__case-study-link:hover {
+    color:
+        var(--campinn-deep-ink);
+}
+
+
+/* ============================================================
+   FOCUS
+============================================================ */
+
+.campinn-study__case-study-link:focus-visible {
+    outline:
+        1px solid
+        currentColor;
+
+    outline-offset:
+        6px;
+}
+
+
+/* ============================================================
+   11 — INTERNAL CONTENT SCROLLER
+============================================================ */
+
+.campinn-study__content {
+    min-width: 0;
+    min-height: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding-left:
+        var(--space-10);
+
+    padding-right:
+        var(--space-08);
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    scrollbar-gutter: stable;
+
+    /* Lenis controls wheel and Contents navigation. */
+    scroll-behavior: auto;
+
+    scrollbar-color:
+        var(--campinn-muted-ink)
+        transparent;
+}
+
+
+.campinn-study.is-settled
+.campinn-study__content {
+    overflow-y: auto;
+}
+
+
+.campinn-study__content::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+.campinn-study__content::-webkit-scrollbar-track {
+    background:
+        transparent;
+}
+
+
+.campinn-study__content::-webkit-scrollbar-thumb {
+    background:
+        var(--campinn-muted-ink);
+
+    border:
+        2px solid
+        transparent;
+
+    background-clip:
+        content-box;
+}
+
+
+/* ============================================================
+   12 — SECTION SYSTEM
+============================================================ */
+
+.campinn-study__section,
+.campinn-study__mini-section {
+    position: relative;
+
+    width: 100%;
+
+    margin: 0;
+
+    scroll-margin-top:
+        var(--space-07);
+}
+
+
+.campinn-study__section +
+.campinn-study__section,
+.campinn-study__section +
+.campinn-study__challenge-solution,
+.campinn-study__challenge-solution +
+.campinn-study__section {
+    margin-top:
+        var(--campinn-section-gap);
+}
+
+
+.campinn-study__heading {
+    margin: 0;
+
+    color:
+        var(--campinn-deep-ink);
+
+    font-family:
+        var(--h3-family);
+
+    font-size:
+        var(--h3-size);
+
+    font-weight:
+        var(--h3-weight);
+
+    line-height:
+        var(--h3-line-height);
+
+    letter-spacing:
+        var(--h3-letter-spacing);
+}
+
+
+.campinn-study__heading +
+.campinn-study__body {
+    margin-top:
+        var(--campinn-heading-gap);
+}
+
+
+.campinn-study__body {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    max-width:
+        1180px;
+}
+
+
+.campinn-study__body p,
+.campinn-study__supporting-copy {
+    margin: 0;
+
+    color:
+        var(--campinn-deep-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+.campinn-study__body strong {
+    font-weight: 500;
+}
+
+
+.campinn-study__supporting-copy {
+    margin-top:
+        var(--space-05);
+}
+
+
+/* ============================================================
+   13 — OVERVIEW
+============================================================ */
+
+.campinn-study__section--overview {
+    max-width:
+        1320px;
+}
+
+
+.campinn-study__section--overview
+.campinn-study__body {
+    max-width:
+        1320px;
+}
+
+
+/* ============================================================
+   14 — CHALLENGE + SOLUTION
+============================================================ */
+
+.campinn-study__challenge-solution {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    column-gap:
+        var(--space-10);
+
+    align-items: start;
+
+    width: 100%;
+}
+
+
+.campinn-study__mini-section
+.campinn-study__body {
+    max-width: none;
+}
+
+
+
+
+/* ============================================================
+   USER PERSONA
+============================================================ */
+
+.campinn-study__section--persona {
+    display: grid;
+
+    grid-template-rows:
+        auto
+        auto;
+
+    row-gap:
+        var(--space-07);
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   ROW 02 — TEXT + PERSONA
+
+   The LEFT text determines the natural height.
+
+   The RIGHT column stretches to match it automatically.
+============================================================ */
+
+.campinn-study__persona-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    column-gap:
+        var(--space-08);
+
+    align-items: stretch;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   LEFT — TEXT
+============================================================ */
+
+.campinn-study__persona-text {
+    min-width: 0;
+}
+
+
+.campinn-study__persona-text
+.campinn-study__body {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-06);
+
+    width: 100%;
+    max-width: none;
+}
+
+
+/* ============================================================
+   RIGHT — PERSONA COMPOSITION
+
+   IMPORTANT:
+   No height: 100%.
+
+   CSS Grid stretches this item to the natural height
+   established by the left text column.
+============================================================ */
+
+.campinn-study__persona {
+    position: relative;
+
+    align-self: stretch;
+
+    min-width: 0;
+
+    margin: 0;
+
+    overflow: visible;
+}
+
+
+/* ============================================================
+   GREY PANEL
+
+   Absolute positioning means it does NOT influence the
+   height of the row.
+
+   Instead it simply fills the height already created by
+   the left text.
+============================================================ */
+
+.campinn-study__persona-panel {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 20%;
+
+    z-index: 1;
+
+    display: grid;
+
+    grid-template-rows:
+        repeat(3, minmax(0, 1fr));
+
+    gap:
+        var(--space-06);
+
+    padding:
+        var(--space-06);
+
+    background:
+        var(--campinn-hero-block);
+
+    text-align: right;
+}
+
+
+/* ============================================================
+   PANEL CONTENT
+
+   Each item receives one equal vertical area.
+============================================================ */
+
+.campinn-study__persona-name,
+.campinn-study__persona-quote,
+.campinn-study__quote-mark {
+    justify-self: end;
+
+    width: 80%;
+
+    margin: 0;
+}
+
+
+/* ============================================================
+   NAME
+============================================================ */
+
+.campinn-study__persona-name {
+    align-self: start;
+
+    font-family:
+        var(--h3-family);
+
+    font-size:
+        32px;
+
+    font-weight:
+        var(--h3-weight);
+
+    line-height:
+        1.05;
+}
+
+
+/* ============================================================
+   QUOTE
+============================================================ */
+
+.campinn-study__persona-quote {
+    align-self: center;
+  
+    padding-bottom: 24px;
+    
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        1.5;
+}
+
+
+/* ============================================================
+   QUOTATION MARK
+============================================================ */
+
+.campinn-study__quote-mark {
+    align-self: end;
+
+    font-family:
+        var(--h2-family);
+
+    font-size:
+        72px;
+
+    font-weight:
+        var(--h2-weight);
+
+    line-height:
+        0.7;
+}
+
+
+/* ============================================================
+   PERSONA IMAGE
+
+   ONLY the image uses height: 100%.
+
+   Its parent already has a real height because Grid stretched
+   it to match the text column.
+
+   Therefore this percentage is now safe.
+============================================================ */
+
+.campinn-study__persona-image {
+    position: absolute;
+
+    bottom: 0;
+
+    left: 25%;
+
+    z-index: 2;
+
+    display: block;
+
+    width: auto;
+    max-width: none;
+
+    height: 104%;
+
+    transform:
+        translateX(-50%);
+
+    object-fit: contain;
+
+    object-position:
+        bottom center;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   16 — WIDE MEDIA
+============================================================ */
+
+.campinn-study__wide-media {
+    width: 100%;
+
+    margin:
+        var(--space-06)
+        0
+        0;
+
+    overflow: hidden;
+}
+
+
+.campinn-study__wide-media img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+.campinn-study__wide-media--journey {
+    margin-top:
+        var(--space-05);
+}
+
+
+.campinn-study__wide-media--flow {
+    margin-top:
+        var(--space-06);
+}
+
+
+/* ============================================================
+   17 — COMPETITIVE ANALYSIS
+============================================================ */
+
+.campinn-study__opportunities {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap: var(--space-06);
+
+    width: 100%;
+
+    margin-top:
+        var(--space-06);
+}
+
+
+.campinn-study__opportunities article {
+    min-width: 0;
+
+    padding:
+        var(--space-04);
+
+    border:
+        1px solid
+        var(--campinn-rule);
+}
+
+
+.campinn-study__opportunities p {
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   18 — INFORMATION ARCHITECTURE
+============================================================ */
+
+.campinn-study__ia-grid {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-top:
+        var(--space-06);
+}
+
+
+/* ============================================================
+   IA CARD
+
+   Card width = image width
+============================================================ */
+
+.campinn-study__ia-card {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width: 200px;
+
+    flex:
+        0
+        0
+        200px;
+
+    min-width: 0;
+}
+
+
+/* ============================================================
+   IA IMAGE
+============================================================ */
+
+.campinn-study__ia-card img {
+    display: block;
+
+    width: 200px;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* ============================================================
+   IA TITLE
+============================================================ */
+
+.campinn-study__ia-card h3 {
+    width: 100%;
+
+    margin:
+        var(--space-04)
+        0
+        var(--space-02);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+/* ============================================================
+   IA DESCRIPTION
+============================================================ */
+
+.campinn-study__ia-card p {
+    width: 100%;
+
+    margin: 0;
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+}
+
+
+/* ============================================================
+   HI-FI DESIGN
+============================================================ */
+
+.campinn-study__section--hi-fi {
+    width: 100%;
+}
+
+
+.campinn-study__section--hi-fi
+.campinn-study__body {
+    max-width: none;
+}
+
+
+/* ============================================================
+   HI-FI IMAGE
+============================================================ */
+
+.campinn-study__hi-fi-image {
+    width: 100%;
+
+    margin:
+        var(--space-07)
+        0
+        0;
+}
+
+
+.campinn-study__hi-fi-image img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+}
+
+/* ============================================================
+   20 — USABILITY TESTING
+============================================================ */
+
+.campinn-study__findings {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            6,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    margin-top:
+        var(--space-06);
+}
+
+
+.campinn-study__findings article {
+    display: flex;
+
+    align-items: flex-start;
+
+    min-width: 0;
+    min-height: 104px;
+
+    padding:
+        var(--space-04);
+
+    border:
+        1px solid
+        var(--campinn-rule);
+}
+
+
+.campinn-study__findings p {
+    margin: 0;
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+}
+
+
+/* ============================================================
+   21 — KEY ITERATIONS
+============================================================ */
+
+.campinn-study__iterations {
+    --iteration-card-width: 240px;
+
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-top:
+        var(--space-06);
+}
+
+.campinn-study__iterations article {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width:
+        var(--iteration-card-width);
+
+    flex:
+        0
+        0
+        var(--iteration-card-width);
+
+    min-width: 0;
+}
+
+
+.campinn-study__iterations figure {
+    width: 100%;
+
+    margin: 0;
+}
+
+
+.campinn-study__iterations img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+.campinn-study__iterations h3 {
+    width: 100%;
+
+    margin:
+        var(--space-05)
+        0
+        var(--space-03);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+.campinn-study__iterations p {
+    width: 100%;
+
+    margin: 0;
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.campinn-study__section--accessibility {
+    width: 100%;
+}
+
+
+/* ============================================================
+   ACCESSIBILITY LAYOUT
+
+   LEFT  = copy
+   RIGHT = final phone
+
+   Gap = 64px
+============================================================ */
+
+.campinn-study__accessibility-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    column-gap:
+        var(--space-08);
+
+    align-items: center;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   LEFT COLUMN
+============================================================ */
+
+.campinn-study__accessibility-copy {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    gap:
+        var(--space-08);
+
+    min-width: 0;
+}
+
+
+/* ============================================================
+   ACCESSIBILITY MAIN COPY
+============================================================ */
+
+.campinn-study__accessibility-main {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-08);
+
+    width: 100%;
+}
+
+
+.campinn-study__accessibility-main p {
+    width: 100%;
+    max-width: 620px;
+
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   BEHANCE BLOCK
+============================================================ */
+
+.campinn-behance {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap:
+        var(--space-07);
+
+    width: 100%;
+}
+
+
+.campinn-behance p {
+    width: 100%;
+    max-width: 680px;
+
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   BEHANCE CTA
+============================================================ */
+
+.campinn-behance__cta {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap:
+        var(--space-04);
+
+    width: fit-content;
+
+    margin: 0;
+
+    color:
+        var(--black);
+
+    font-family:
+        var(--info-family);
+
+    font-size:
+        var(--info-size);
+
+    font-weight:
+        var(--info-weight);
+
+    font-style:
+        var(--info-style);
+
+    line-height:
+        var(--info-line-height);
+
+    text-decoration: none;
+}
+
+
+/* ============================================================
+   RIGHT COLUMN
+============================================================ */
+
+.campinn-study__accessibility-visual {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap:
+        var(--space-06);
+
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+/* ============================================================
+   FINAL PHONE
+============================================================ */
+
+.campinn-study__final-phone {
+    width: 250px;
+
+    margin: 0;
+
+    aspect-ratio:
+        989 / 2000;
+}
+
+
+/* ============================================================
+   24 — REFLECTION / NEXT STEPS
+============================================================ */
+
+.campinn-study__next-steps {
+    width: 100%;
+
+    max-width:
+        1180px;
+
+    margin-top:
+        var(--space-07);
+}
+
+
+.campinn-study__next-steps h3 {
+    margin:
+        0
+        0
+        var(--space-05);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size: var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+.campinn-study__next-steps p,
+.campinn-study__next-steps li {
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+.campinn-study__next-steps ul {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+
+    margin:
+        var(--space-05)
+        0;
+
+    padding-left:
+        20px;
+}
+
+
+/* ============================================================
+   25 — CLOSING
+============================================================ */
+
+.campinn-study__closing {
+    display: flex;
+
+    align-items: center;
+
+    gap:
+        var(--space-02);
+
+    width: fit-content;
+
+    margin:
+        var(--space-10)
+        0
+        0;
+}
+
+
+.campinn-study__closing p {
+    margin: 0;
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+.campinn-study__closing-icon {
+    display: block;
+
+    width: 14px;
+    height: 14px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+}
+
+
+.campinn-study__section--last {
+    /* The workspace adds 48px below the column, for 120px total. */
+    padding-bottom: calc(120px - var(--space-07));
+}
+
+
+/* ============================================================
+   26 — FOCUS
+============================================================ */
+
+.campinn-study__content:focus-visible {
+    outline:
+        1px solid
+        var(--campinn-rule);
+
+    outline-offset:
+        -1px;
+}
+
+
+/* ============================================================
+   27 — REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .campinn-study__content {
+        scroll-behavior: auto;
+    }
+
+
+}
+/* ============================================================
+   LENIS — CASE STUDY SCROLL INTEGRATION
+
+   Outer document: Lenis smooth scrolling.
+   Right content: independent Lenis overflow scrolling.
+   Do not apply overflow:hidden or transforms to html/body.
+============================================================ */
+
+html:has(body.campinn-page) {
+    scroll-behavior: auto;
+}
+
+.campinn-page .campinn-study__content {
+    overscroll-behavior-y: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .campinn-page .campinn-study__content {
+        scroll-behavior: auto;
+    }
+}
+
+/* Keep section margins inside the observed Lenis content wrapper. */
+.campinn-study__scroll-body {
+    display: flow-root;
+}
+

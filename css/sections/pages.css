@@ -1,0 +1,180 @@
+/* ============================================================
+   SANIA SAJU — PORTFOLIO
+   PAGES SHOWCASE
+============================================================ */
+
+
+/* ============================================================
+   PAGES HOST
+============================================================ */
+
+pages-section {
+    display: block;
+
+    position: relative;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   PAGES SCROLL TRACK
+
+   This controls how long the Pages experience lasts.
+
+   The section itself passes through the document,
+   but the visible viewport inside remains pinned.
+============================================================ */
+
+.pages-showcase {
+    position: relative;
+
+    width: 100%;
+    height: 700vh;
+
+    overflow: visible;
+
+     background: var(--muted);
+}
+
+/* ============================================================
+   PIXELS NAVIGATION TARGET
+
+   Pages begins 100vh underneath Project 03.
+
+   The navbar should therefore land 100vh into the Pages
+   section rather than at its actual document start.
+============================================================ */
+
+.pages-showcase__anchor {
+    position: absolute;
+
+    top: 100vh;
+    left: 0;
+
+    width: 1px;
+    height: 1px;
+
+    pointer-events: none;
+}
+
+/* ============================================================
+   PINNED PAGES VIEWPORT
+
+   This must always equal the browser viewport.
+
+   It never travels through the screen while the
+   column animation is active.
+============================================================ */
+
+.pages-showcase__viewport {
+    position: sticky;
+    top: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            5,
+            minmax(0, 1fr)
+        );
+
+    gap: var(--space-05);
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: var(--project-visual);
+}
+
+
+/* ============================================================
+   PAGE COLUMN
+============================================================ */
+
+.pages-showcase__column {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+
+    flex-shrink: 0;
+
+    will-change: transform;
+}
+
+
+/* ============================================================
+   LOOP GROUP
+============================================================ */
+
+.pages-showcase__loop {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-05);
+
+    padding-bottom: var(--space-05);
+
+    flex-shrink: 0;
+}
+
+
+/* ============================================================
+   OFFSET COLUMNS
+============================================================ */
+
+.pages-showcase__column--offset {
+    margin-top: -240px;
+}
+
+
+/* ============================================================
+   PAGE CARD
+============================================================ */
+
+.pages-showcase__card {
+    width: 100%;
+
+    aspect-ratio: 0.72;
+
+    flex: 0 0 auto;
+
+    overflow: hidden;
+
+    background: var(--project-visual);
+}
+
+
+/* ============================================================
+   PAGE IMAGE
+============================================================ */
+
+.pages-showcase__image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pages-showcase__column {
+        transform: none !important;
+
+        will-change: auto;
+    }
+
+}

@@ -1,0 +1,377 @@
+/* ============================================================
+   SANIA SAJU — PORTFOLIO
+   GLOBAL STYLES
+
+   Contains:
+   - Component + section imports
+   - Fonts
+   - Design tokens
+   - Reset
+   - Global element styles
+   - Accessibility utilities
+   - Global reduced-motion handling
+============================================================ */
+
+
+/* ============================================================
+   01. COMPONENTS
+============================================================ */
+
+@import url("./components/navbar.css");
+@import url("./components/arrow.css");
+@import url("./components/loading.css");
+
+
+/* ============================================================
+   02. HOME SECTIONS
+============================================================ */
+
+@import url("./sections/hero.css");
+@import url("./sections/projects.css");
+@import url("./sections/pages.css");
+@import url("./sections/about.css");
+@import url("./sections/contact.css");
+
+
+/* ============================================================
+   03. FONTS
+============================================================ */
+
+@font-face {
+    font-family: "Argesta Headline";
+    src: url("../assets/fonts/ArgestaHeadline.otf") format("opentype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Argesta Display";
+    src: url("../assets/fonts/ArgestaDisplay.otf") format("opentype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Argesta Display";
+    src: url("../assets/fonts/ArgestaDisplayItalic.otf") format("opentype");
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "General Sans";
+    src: url("../assets/fonts/GeneralSansRegular.otf") format("opentype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "General Sans";
+    src: url("../assets/fonts/GeneralSansMedium.otf") format("opentype");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+
+/* ============================================================
+   04. DESIGN TOKENS
+============================================================ */
+
+:root {
+
+    /* --------------------------------------------------------
+       COLORS
+    --------------------------------------------------------- */
+
+    --gray: #F5F5F5;
+    --paper: #F5F5F5;
+    --black: #070707;
+    --muted: #666666;
+    --subtle: #999999;
+
+
+    /* --------------------------------------------------------
+       H1
+    --------------------------------------------------------- */
+
+    --h1-family: "Argesta Headline", Georgia, serif;
+    --h1-size: 108px;
+    --h1-weight: 400;
+    --h1-line-height: 0.96;
+    --h1-letter-spacing: 0;
+
+
+    /* --------------------------------------------------------
+       H2
+    --------------------------------------------------------- */
+
+    --h2-family: "Argesta Display", Georgia, serif;
+    --h2-size: 72px;
+    --h2-weight: 400;
+    --h2-line-height: 1.02;
+    --h2-letter-spacing: 0;
+
+
+    /* --------------------------------------------------------
+       H3
+    --------------------------------------------------------- */
+
+    --h3-family: "Argesta Display", Georgia, serif;
+    --h3-size: 48px;
+    --h3-weight: 400;
+    --h3-line-height: 1.08;
+    --h3-letter-spacing: 0;
+
+
+    /* --------------------------------------------------------
+       INFO
+    --------------------------------------------------------- */
+
+    --info-family: "Argesta Display", Georgia, serif;
+    --info-size: 18px;
+    --info-weight: 400;
+    --info-style: italic;
+    --info-line-height: 1.24;
+    --info-letter-spacing: 0;
+
+
+    /* --------------------------------------------------------
+       BODY
+    --------------------------------------------------------- */
+
+    --body-family: "General Sans", Arial, sans-serif;
+    --body-size: 16px;
+    --body-weight: 400;
+    --body-line-height: 1.5;
+    --body-letter-spacing: 0;
+
+
+    /* --------------------------------------------------------
+       BODY LARGE
+    --------------------------------------------------------- */
+
+    --body-large-family: "General Sans", Arial, sans-serif;
+    --body-large-size: 18px;
+    --body-large-weight: 500;
+    --body-large-line-height: 1.52;
+    --body-large-letter-spacing: 0;
+
+
+    /* --------------------------------------------------------
+       METADATA
+    --------------------------------------------------------- */
+
+    --metadata-family: "General Sans", Arial, sans-serif;
+    --metadata-size: 14px;
+    --metadata-weight: 400;
+    --metadata-line-height: 1.4;
+    --metadata-letter-spacing: 0;
+
+
+    /* --------------------------------------------------------
+       SPACING
+    --------------------------------------------------------- */
+
+    --space-01: 4px;
+    --space-02: 8px;
+    --space-03: 12px;
+    --space-04: 16px;
+    --space-05: 24px;
+    --space-06: 32px;
+    --space-07: 48px;
+    --space-08: 64px;
+    --space-09: 96px;
+    --space-10: 120px;
+
+
+    /* --------------------------------------------------------
+       ARROW
+    --------------------------------------------------------- */
+
+    --arrow-default-length: 50px;
+    --arrow-active-length: 70px;
+    --arrow-thickness: 15px;
+
+
+    /* --------------------------------------------------------
+       INTERACTION
+    --------------------------------------------------------- */
+
+    --interaction-duration: 0.2s;
+    --interaction-easing: ease-in-out;
+
+
+    /* --------------------------------------------------------
+       CONTACT TRANSITION
+    --------------------------------------------------------- */
+
+    --contact-transition-duration: 0.65s;
+
+    --contact-transition-easing:
+        cubic-bezier(
+            0.76,
+            0,
+            0.24,
+            1
+        );
+}
+
+
+/* ============================================================
+   05. RESET
+============================================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: auto;
+}
+
+
+body {
+    width: 100%;
+    min-height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+
+    background: var(--gray);
+    color: var(--black);
+
+    font-family: var(--body-family);
+    font-size: var(--body-size);
+    font-weight: var(--body-weight);
+    line-height: var(--body-line-height);
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+
+img,
+svg,
+video {
+    display: block;
+}
+
+
+img,
+video {
+    max-width: 100%;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+
+button {
+    color: inherit;
+}
+
+
+/* ============================================================
+   06. CUSTOM ELEMENTS
+============================================================ */
+
+portfolio-navbar,
+projects-section,
+pages-section,
+about-section,
+contact-section {
+    display: block;
+}
+
+
+/* ============================================================
+   07. ACCESSIBILITY
+============================================================ */
+
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+
+/* ============================================================
+   08. REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+    }
+
+}
+
+
+/* ============================================================
+   09. FORCED COLORS
+============================================================ */
+
+@media (forced-colors: active) {
+
+    :focus-visible {
+        outline-color: Highlight;
+    }
+
+}

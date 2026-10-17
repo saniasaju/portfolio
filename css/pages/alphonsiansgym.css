@@ -1,0 +1,2675 @@
+/* ============================================================
+   SANIA SAJU — ALPHONSIANS' GYM CASE STUDY
+   DESKTOP-FIRST
+
+   Reference behaviour:
+   - Shared sticky portfolio navbar
+   - Hero fills the viewport below the navbar
+   - Case study settles directly below the navbar
+   - Contents + Case Studies stay stationary
+   - Right-side case-study content becomes the internal scroller
+   - Layout follows the supplied Figma composition
+============================================================ */
+
+
+/* ============================================================
+   01 — PAGE TOKENS
+============================================================ */
+
+:root {
+
+    --gym-page-padding:
+        var(--space-10);
+
+    --gym-study-padding:
+        var(--space-08);
+
+    --gym-column-gap:
+        var(--space-08);
+
+    --gym-section-gap:
+        var(--space-09);
+
+    --gym-subsection-gap:
+        var(--space-09);
+
+    --gym-heading-gap:
+        var(--space-07);
+
+    --gym-navbar-height:
+        112px;
+
+    --gym-sidebar-width:
+        162px;
+
+    --gym-deep-ink:
+        var(--black);
+
+    --gym-muted-ink:
+        var(--muted);
+
+    --gym-subtle-ink:
+        var(--subtle);
+
+    --gym-hero-block:
+        #D3D3D3;
+
+    --gym-rule:
+        rgba(
+            7,
+            7,
+            7,
+            0.28
+        );
+
+    --gym-soft-rule:
+        rgba(
+            7,
+            7,
+            7,
+            0.14
+        );
+
+    --gym-navy:
+        #0C2340;
+
+    --gym-gold:
+        #AE9142;
+
+    --gym-white:
+        #FFFFFF;
+
+    --gym-green:
+        #0F4229;
+}
+
+
+/* ============================================================
+   02 — PAGE
+============================================================ */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body.gym-page {
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+
+    background:
+        var(--paper);
+
+    color:
+        var(--gym-deep-ink);
+}
+
+
+.gym-case {
+    display: block;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   03 — SHARED PAGE NAVBAR
+============================================================ */
+
+.gym-page__navbar {
+    position: sticky;
+
+    padding-left: var(--space-04);
+    padding-right: var(--space-04);
+
+    top: 0;
+
+    z-index: 1000;
+
+    display: block;
+
+    width: 100%;
+
+    background:
+        var(--paper);
+}
+
+
+/*
+   Homepage Hero CSS initially hides portfolio-navbar.
+   Case-study pages do not use that entrance animation.
+*/
+
+body.gym-page
+.gym-page__navbar {
+    opacity: 1;
+    visibility: visible;
+
+    transform: none;
+
+    pointer-events: auto;
+}
+
+
+/* ============================================================
+   04 — HERO
+============================================================ */
+
+.gym-hero {
+    position: relative;
+
+    width: 100%;
+
+    height:
+        calc(
+            100vh -
+            var(--gym-navbar-height)
+        );
+
+    min-height: 0;
+
+    padding:
+        var(--space-06)
+        var(--gym-page-padding)
+        var(--space-09);
+
+    overflow: hidden;
+
+    background:
+        var(--paper);
+}
+
+
+.gym-hero__content {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+.gym-hero__grid {
+    display: flex;
+
+    align-items: stretch;
+    justify-content: space-between;
+
+    gap: 0;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+/* ============================================================
+   05 — HERO LEFT
+============================================================ */
+
+.gym-hero__visual {
+    position: relative;
+
+    flex:
+        0
+        0
+        57%;
+
+    width: 57%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+/* ============================================================
+   HERO TITLE BLOCK
+============================================================ */
+
+.gym-hero__title {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    min-height: 75%;
+
+    margin: 0;
+
+    padding: var(--space-06);
+
+    background:
+        var(--gym-hero-block);
+
+    color:
+        var(--gym-deep-ink);
+
+    font-family:
+        var(--h1-family);
+
+    font-size:
+        var(--h1-size);
+
+    font-weight:
+        var(--h1-weight);
+
+    line-height:
+        var(--h1-line-height);
+
+    letter-spacing:
+        var(--h1-letter-spacing);
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   06 — HERO LAPTOP
+============================================================ */
+
+.gym-hero__mockup {
+    position: absolute;
+
+    bottom: -30px;
+    right: -10%;
+
+    z-index: 3;
+
+    width: 68%;
+
+    margin: 0;
+
+    aspect-ratio:
+        805 / 513;
+}
+
+
+/* ============================================================
+   SHARED LAPTOP COMPOSITION
+============================================================ */
+
+.gym-hero__mockup-frame {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
+.gym-hero__screen {
+    position: absolute;
+
+    left: 15.2795%;
+    top: 16%;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 69.441%;
+    height: 64.2261%;
+
+    overflow: hidden;
+
+    background:
+        var(--gym-deep-ink);
+
+    color:
+        var(--paper);
+
+    pointer-events: none;
+}
+
+
+.gym-hero__video {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: top center;
+}
+
+/* ============================================================
+   07 — HERO RIGHT
+============================================================ */
+
+.gym-hero__info {
+    display: flex;
+
+    flex:
+        0
+        0
+        35%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    justify-content:
+        space-between;
+
+    width: 35%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+/* ============================================================
+   HERO DETAILS
+============================================================ */
+
+.gym-hero__details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.gym-hero__detail {
+    display: grid;
+
+    grid-template-columns:
+        142px
+        minmax(
+            0,
+            1fr
+        );
+
+    column-gap:
+        var(--space-06);
+
+    align-items: baseline;
+
+    width: 100%;
+}
+
+
+.gym-hero__detail dt,
+.gym-hero__detail dd {
+    margin: 0;
+}
+
+
+.gym-hero__detail dt {
+    margin: 0;
+
+    color:
+        var(--gym-muted-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+.gym-hero__detail dd {
+    margin: 0;
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   HERO SUMMARY
+============================================================ */
+
+.gym-hero__summary {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    margin: 0;
+}
+
+
+.gym-hero__summary-title {
+    margin: 0;
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+.gym-hero__summary p:not(
+    .gym-hero__summary-title
+) {
+    width: 100%;
+    max-width: 600px;
+
+    margin: 0;
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   08 — CTA WRAPPER
+============================================================ */
+
+.gym-hero__cta {
+    width: fit-content;
+}
+
+
+/* ============================================================
+   CTA LINK
+============================================================ */
+
+.gym-cta {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap:
+        var(--space-04);
+
+    width: fit-content;
+
+    color:
+        var(--gym-deep-ink);
+
+    font-family:
+        var(--info-family);
+
+    font-size:
+        var(--info-size);
+
+    font-weight:
+        var(--info-weight);
+
+    font-style:
+        var(--info-style);
+
+    line-height:
+        var(--info-line-height);
+
+    text-decoration: none;
+}
+
+
+/* ============================================================
+   FOCUS
+============================================================ */
+
+.gym-cta:focus-visible {
+    outline:
+        2px solid
+        var(--black);
+
+    outline-offset:
+        var(--space-02);
+}
+
+
+/* ============================================================
+   09 — CASE STUDY
+============================================================ */
+
+.gym-study {
+    position: relative;
+
+    width: 100%;
+
+    height:
+        calc(
+            100vh -
+            var(--gym-navbar-height)
+        );
+
+    overflow: hidden;
+
+    background:
+        var(--paper);
+}
+
+
+/* ============================================================
+   CASE STUDY WORKSPACE
+============================================================ */
+
+.gym-study__workspace {
+    display: grid;
+
+    grid-template-columns:
+        var(--gym-sidebar-width)
+        minmax(
+            0,
+            1fr
+        );
+
+    width: 100%;
+    height: 100%;
+
+    padding: var(--space-08);
+    padding-bottom: var(--space-07);
+    padding-top: 0;
+
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   10 — SIDEBAR
+============================================================ */
+
+.gym-study__sidebar {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+.gym-study__sidebar-top,
+.gym-study__case-studies {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+.gym-study__contents-label {
+    margin:
+        0
+        0
+        var(--space-01);
+
+    color:
+        var(--gym-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space:
+        nowrap;
+}
+
+
+/* ============================================================
+   TABLE OF CONTENTS
+============================================================ */
+
+.gym-study__toc {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap:
+        var(--space-01);
+}
+
+
+.gym-study__toc-link {
+    position: relative;
+
+    display: inline-block;
+
+    width: fit-content;
+
+    margin: 0;
+    padding: 0;
+
+    color:
+        var(--gym-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space: nowrap;
+
+    transition:
+        color
+        var(--interaction-duration)
+        var(--interaction-easing);
+}
+
+
+.gym-study__toc-link.is-active,
+.gym-study__toc-link[aria-current="true"] {
+    color:
+        var(--gym-deep-ink);
+
+    font-weight: 500;
+}
+
+
+.gym-study__toc-link:hover {
+    color:
+        var(--gym-deep-ink);
+}
+
+
+.gym-study__toc-link:focus-visible {
+    color:
+        var(--gym-deep-ink);
+
+    outline:
+        1px solid
+        currentColor;
+
+    outline-offset:
+        6px;
+}
+
+
+/* ============================================================
+   CASE STUDY SWITCHER
+============================================================ */
+
+.gym-study__case-studies {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   CASE STUDIES LABEL
+
+   The label keeps its own spacing. Link-to-link spacing is
+   controlled separately so the two values do not stack.
+============================================================ */
+
+.gym-study__case-studies-label {
+    margin:
+        0
+        0
+        var(--space-01);
+
+    color:
+        var(--gym-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space:
+        nowrap;
+}
+
+
+/* ============================================================
+   CASE STUDIES LINKS
+============================================================ */
+
+.gym-study__case-studies-link {
+    position: relative;
+
+    display: block;
+
+    width: fit-content;
+
+    margin: 0;
+    padding: 0;
+
+    color:
+        var(--gym-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space:
+        nowrap;
+
+    transition:
+        color
+        var(--interaction-duration)
+        var(--interaction-easing);
+}
+
+
+/*
+   Add spacing only BETWEEN links.
+
+   The first link therefore receives no extra top space after
+   the CASE STUDIES label.
+*/
+
+.gym-study__case-studies-link +
+.gym-study__case-studies-link {
+    margin-top:
+        var(--space-01);
+}
+
+
+/* ============================================================
+   CURRENT CASE STUDY
+============================================================ */
+
+.gym-study__case-studies-link.is-current,
+.gym-study__case-studies-link[aria-current="page"] {
+    color:
+        var(--gym-deep-ink);
+
+    font-weight:
+        500;
+}
+
+
+/* ============================================================
+   HOVER
+============================================================ */
+
+.gym-study__case-studies-link:hover {
+    color:
+        var(--gym-deep-ink);
+}
+
+
+/* ============================================================
+   KEYBOARD FOCUS
+============================================================ */
+
+.gym-study__case-studies-link:focus-visible {
+    color:
+        var(--gym-deep-ink);
+
+    outline:
+        1px solid
+        currentColor;
+
+    outline-offset:
+        6px;
+}
+
+
+/* ============================================================
+   11 — INTERNAL CONTENT SCROLLER
+============================================================ */
+
+.gym-study__content {
+    min-width: 0;
+    min-height: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding-left:
+        var(--space-10);
+
+    padding-right:
+        var(--space-08);
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    scrollbar-gutter: stable;
+    scroll-behavior: auto;
+
+    scrollbar-color:
+        var(--gym-muted-ink)
+        transparent;
+}
+
+
+.gym-study.is-settled
+.gym-study__content {
+    overflow-y: auto;
+}
+
+
+.gym-study__content::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+.gym-study__content::-webkit-scrollbar-track {
+    background:
+        transparent;
+}
+
+
+.gym-study__content::-webkit-scrollbar-thumb {
+    background:
+        var(--gym-muted-ink);
+
+    border:
+        2px solid
+        transparent;
+
+    background-clip:
+        content-box;
+}
+
+
+/* ============================================================
+   12 — GENERAL CASE-STUDY SECTION SYSTEM
+============================================================ */
+
+.gym-study__section,
+.gym-study__subsection[data-study-section] {
+    position: relative;
+
+    width: 100%;
+
+    scroll-margin-top:
+        var(--space-07);
+}
+
+
+.gym-study__section {
+    margin: 0;
+}
+
+
+.gym-study__section +
+.gym-study__section {
+    margin-top:
+        var(--gym-section-gap);
+}
+
+
+.gym-study__section--last {
+    padding-bottom: 0;
+}
+
+
+.gym-study__heading {
+    margin: 0;
+
+    color:
+        var(--gym-deep-ink);
+
+    font-family:
+        var(--h3-family);
+
+    font-size:
+        var(--h3-size);
+
+    font-weight:
+        var(--h3-weight);
+
+    line-height:
+        var(--h3-line-height);
+
+    letter-spacing:
+        var(--h3-letter-spacing);
+}
+
+
+.gym-study__subheading {
+    margin: 0;
+
+    color:
+        var(--gym-deep-ink);
+
+    font-family:
+        var(--h3-family);
+
+    font-size:
+        36px;
+
+    font-weight:
+        var(--h3-weight);
+
+    line-height:
+        1.08;
+}
+
+
+.gym-study__heading +
+.gym-study__body,
+.gym-study__subheading +
+.gym-study__body {
+    margin-top:
+        var(--gym-heading-gap);
+}
+
+
+.gym-study__body {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    max-width:
+        980px;
+}
+
+
+.gym-study__body--wide {
+    max-width:
+        1320px;
+}
+
+
+.gym-study__body p,
+.gym-study__body li,
+.gym-study__supporting-copy {
+    margin: 0;
+
+    color:
+        var(--gym-deep-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+.gym-study__body strong {
+    font-weight: 500;
+}
+
+
+.gym-study__body ul,
+.gym-study__solution-list {
+    margin: 0;
+
+    padding-left:
+        1.2em;
+}
+
+
+.gym-study__body li +
+li,
+.gym-study__solution-list li +
+li {
+    margin-top: 0;
+}
+
+
+.gym-study__solution-list li {
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+.gym-study__supporting-copy {
+    max-width:
+        1320px;
+}
+
+
+/* ============================================================
+   SUBSECTION RHYTHM
+============================================================ */
+
+.gym-study__subsection {
+    position: relative;
+
+    width: 100%;
+
+    margin-top:
+        var(--gym-subsection-gap);
+}
+
+
+.gym-study__subsection--text
+.gym-study__body {
+    max-width:
+        1320px;
+}
+
+
+/* ============================================================
+   13 — CHALLENGE
+============================================================ */
+
+/* Solution: mobile video mockup alongside the existing copy. */
+.gym-study__solution-layout {
+    display: grid;
+    grid-template-columns: minmax(200px, 0.65fr) minmax(0, 1.35fr);
+    align-items: center;
+    gap: var(--gym-column-gap);
+}
+
+.gym-study__solution-copy {
+    min-width: 0;
+}
+
+.gym-study__solution-mockup {
+    position: relative;
+    width: min(100%, 200px);
+    aspect-ratio: 989 / 2000;
+    margin: 0;
+    justify-self: center;
+}
+
+.gym-study__solution-screen {
+    position: absolute;
+    left: 5.5612%;
+    top: 2.4%;
+    width: 88.8777%;
+    height: 95.2%;
+    overflow: hidden;
+    border-radius: 12.2% / 5.6%;
+    background: #ffffff;
+}
+
+.gym-study__solution-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 108%;
+    max-width: none;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.gym-study__solution-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .gym-study__solution-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+    }
+
+    .gym-study__solution-copy {
+        grid-row: 1;
+    }
+}
+
+/* Vibe Coding: copy alongside a compact two-by-two tool grid. */
+.gym-study__vibe-coding {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 224px;
+    column-gap: var(--space-07);
+    row-gap: var(--gym-heading-gap);
+}
+
+.gym-study__vibe-coding > .gym-study__heading,
+.gym-study__vibe-coding > .gym-study__body {
+    grid-column: 1;
+    min-width: 0;
+    margin: 0;
+}
+
+.gym-study__tools {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: end;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
+    margin: 0;
+    padding: 40px;
+    border: 1px solid rgba(7, 7, 7, 0.22);
+    list-style: none;
+}
+
+.gym-study__tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: var(--gym-deep-ink);
+    font-family: var(--body-family);
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.gym-study__tool img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+@media (max-width: 600px) {
+    .gym-study__vibe-coding {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .gym-study__tools {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: center;
+        width: 224px;
+    }
+}
+
+.gym-study__split {
+    display: grid;
+
+    width: 100%;
+
+    column-gap:
+        var(--gym-column-gap);
+
+    align-items: center;
+}
+
+
+.gym-study__split--challenge {
+    grid-template-columns:
+        minmax(
+            0,
+            1.15fr
+        )
+        minmax(
+            440px,
+            0.85fr
+        );
+}
+
+
+.gym-study__split--challenge
+.gym-study__heading +
+.gym-study__body {
+    margin-top:
+        var(--gym-heading-gap);
+}
+
+
+/* ============================================================
+   ORIGINAL DESIGN
+============================================================ */
+
+.gym-study__original-design {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    width: 100%;
+
+    margin: 0;
+}
+
+
+/* ============================================================
+   LAPTOP
+============================================================ */
+
+.gym-laptop {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio:
+        805 / 513;
+}
+
+
+/* ============================================================
+   ORIGINAL LAPTOP
+============================================================ */
+
+.gym-laptop--original {
+    width: 120%;
+}
+
+
+/* ============================================================
+   LAPTOP SCREEN
+============================================================ */
+
+.gym-laptop__screen {
+    position: absolute;
+
+    left: 15.2795%;
+    top: 16%;
+
+    z-index: 2;
+
+    width: 69.441%;
+    height: 64.2261%;
+
+    overflow: hidden;
+
+    background:
+        var(--black);
+}
+
+
+/* ============================================================
+   LAPTOP VIDEO
+============================================================ */
+
+.gym-laptop__video {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position:
+        top center;
+}
+
+
+/* ============================================================
+   LAPTOP FRAME
+============================================================ */
+
+.gym-laptop__frame {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   ORIGINAL DESIGN CAPTION
+============================================================ */
+
+.gym-study__original-design figcaption {
+    margin-top:
+        var(--space-03);
+
+    color:
+        var(--gym-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    text-align: center;
+}
+
+
+/* ============================================================
+   14 — EXISTING EXPERIENCE
+============================================================ */
+
+.gym-study__existing {
+    display: grid;
+
+    grid-template-rows: auto;
+
+    gap:
+        var(--space-06);
+
+    align-items: stretch;
+}
+
+.gym-study__existing-media {
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+    gap: var(--space-06);
+
+    width: 100%;
+}
+
+/* ============================================================
+   EXISTING EXPERIENCE — FIGURE
+============================================================ */
+
+.gym-study__existing-figure {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: var(--space-05);
+
+    width: 100%;
+
+    margin: 0;
+}
+
+
+/* ============================================================
+   EXISTING EXPERIENCE — CAPTION
+============================================================ */
+
+.gym-study__existing-figure figcaption {
+    width: 100%;
+
+    margin:
+        0
+        0
+        var(--space-03);
+
+    color:
+        var(--gym-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    text-align: center;
+}
+
+
+/* ============================================================
+   EXISTING EXPERIENCE — IMAGE
+============================================================ */
+
+.gym-study__existing-figure img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+    border:
+        1px solid
+        var(--gym-soft-rule);
+}
+
+/* ============================================================
+   15 — USER JOURNEY
+============================================================ */
+
+.gym-study__journey
+.gym-study__supporting-copy {
+    margin-top:
+        var(--space-06);
+}
+
+
+.gym-study__journey-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    column-gap:
+        var(--space-07);
+
+    width: 100%;
+
+    margin-top:
+        var(--space-05);
+}
+
+
+.gym-study__journey-grid article {
+    min-width: 0;
+
+    min-height: 120px;
+
+    padding:
+        var(--space-05);
+
+    border:
+        1px solid
+        var(--gym-rule);
+}
+
+
+.gym-study__journey-grid p {
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   16 — INFORMATION ARCHITECTURE
+============================================================ */
+
+.gym-study__ia-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    column-gap:
+        var(--space-06);
+
+    row-gap:
+        var(--space-07);
+
+    align-items: start;
+
+    width: 100%;
+
+    margin-top:
+        var(--space-06);
+}
+
+
+.gym-study__ia-card {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    min-width: 0;
+}
+
+
+.gym-study__ia-card--double {
+    grid-column:
+        span 2;
+}
+
+
+.gym-study__ia-pair {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        var(--space-06);
+
+    width: 100%;
+}
+
+
+.gym-study__ia-card > img,
+.gym-study__ia-pair img {
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio:
+        2 / 1;
+
+    object-fit: cover;
+    object-position: top center;
+
+    border:
+        1px solid
+        var(--gym-soft-rule);
+}
+
+
+.gym-study__ia-card p {
+    margin:
+        var(--space-04)
+        0
+        0;
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+}
+
+
+#information-architecture >
+.gym-study__supporting-copy {
+    margin-top:
+        var(--space-05);
+}
+
+
+/* ============================================================
+   17 — BOOKING FLOW
+============================================================ */
+
+
+.gym-study__booking-layout {
+    display: block;
+
+    width: 100%;
+}
+
+
+.gym-study__booking-copy {
+    width: 100%;
+}
+
+
+#booking
+.gym-study__heading {
+    margin: 0;
+}
+
+
+#booking
+.gym-study__heading +
+.gym-study__supporting-copy {
+    margin-top:
+        var(--space-06);
+}
+
+
+#booking
+.gym-study__supporting-copy {
+    width: 100%;
+    max-width: none;
+}
+
+
+.gym-study__booking-steps {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        var(--space-06);
+
+    width: 100%;
+
+    margin-top:
+        var(--space-05);
+}
+
+
+.gym-study__booking-steps article {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    min-width: 0;
+    min-height: 120px;
+
+    padding:
+        var(--space-04);
+
+    border:
+        1px solid
+        var(--gym-rule);
+
+    background:
+        transparent;
+}
+
+
+.gym-study__booking-steps h3 {
+    margin:
+        0
+        0
+        var(--space-04);
+
+    color:
+        var(--gym-deep-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        500;
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+
+.gym-study__booking-steps p {
+    margin: 0;
+
+    color:
+        var(--gym-deep-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+.gym-study__booking-media {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        var(--space-06);
+
+    align-items: start;
+
+    width: 100%;
+
+    margin-top:
+        var(--space-06);
+}
+
+
+
+.gym-study__booking-media img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    margin: 0;
+
+    border:
+        1px solid
+        var(--gym-soft-rule);
+
+    object-fit: contain;
+}
+
+
+.gym-study__booking-media +
+.gym-study__supporting-copy {
+    margin-top:
+        var(--space-06);
+}
+
+/* ============================================================
+   18 — VISUAL SYSTEM
+============================================================ */
+
+.gym-study__system-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    width: 100%;
+
+    margin-top:
+        var(--space-06);
+
+    border:
+        1px solid
+        var(--gym-rule);
+}
+
+
+.gym-study__system-card {
+    min-width: 0;
+
+    padding:
+        var(--space-06);
+}
+
+
+.gym-study__system-card +
+.gym-study__system-card {
+    border-left:
+        1px solid
+        var(--gym-rule);
+}
+
+
+.gym-study__micro-label {
+    margin:
+        0
+        0
+        var(--space-06);
+
+    color:
+        var(--gym-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+}
+
+
+.gym-study__system-card > p:last-child {
+    margin:
+        var(--space-07)
+        0
+        0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+.gym-study__type-sample {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-04);
+
+    min-height: 112px;
+}
+
+
+.gym-study__type-sample span:first-child {
+    font-family:
+        "Arial Black",
+        "General Sans",
+        Arial,
+        sans-serif;
+
+    font-size:
+        44px;
+
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+.gym-study__type-sample span:last-child {
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        28px;
+
+    font-weight: 400;
+
+    line-height: 1.05;
+}
+
+
+.gym-study__swatches {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        var(--space-03);
+
+    min-height: 112px;
+}
+
+
+.gym-study__swatches span {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 1;
+
+    border:
+        1px solid
+        var(--gym-soft-rule);
+}
+
+
+.gym-study__swatches
+span:nth-child(1) {
+    background:
+        var(--gym-navy);
+}
+
+
+.gym-study__swatches
+span:nth-child(2) {
+    background:
+        var(--gym-gold);
+}
+
+
+.gym-study__swatches
+span:nth-child(3) {
+    background:
+        var(--gym-white);
+}
+
+
+.gym-study__swatches
+span:nth-child(4) {
+    background:
+        var(--gym-green);
+}
+
+
+.gym-study__swatches span::after {
+    content:
+        attr(
+            data-hex
+        );
+
+    position: absolute;
+
+    left: 0;
+    bottom:
+        calc(
+            -1 *
+            var(--space-05)
+        );
+
+    color:
+        var(--gym-deep-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        11px;
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height: 1;
+}
+
+
+.gym-study__spacing-sample {
+    min-height: 112px;
+
+    margin: 0 !important;
+
+    font-family:
+        var(--body-large-family)
+        !important;
+
+    font-size:
+        24px
+        !important;
+
+    font-weight:
+        var(--body-large-weight)
+        !important;
+
+    line-height:
+        1.35
+        !important;
+}
+
+
+#visual-system >
+.gym-study__supporting-copy {
+    margin-top:
+        var(--space-06);
+}
+
+
+/* ============================================================
+   19 — DEVELOPMENT
+============================================================ */
+
+.gym-study__development-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(
+            0,
+            0.95fr
+        )
+        minmax(
+            0,
+            1.05fr
+        );
+
+    column-gap:
+        var(--space-09);
+
+    align-items: center;
+
+    width: 100%;
+}
+
+
+.gym-study__development-media {
+    width: 100%;
+
+    margin: 0;
+}
+
+
+.gym-study__development-media img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-width: none;
+
+    object-fit: contain;
+}
+
+
+.gym-study__development-copy
+.gym-study__heading +
+.gym-study__body {
+    margin-top:
+        var(--space-06);
+}
+
+
+/* ============================================================
+   20 — FINAL EXPERIENCE / REFLECTION
+============================================================ */
+
+#final-experience
+.gym-study__body,
+#reflection
+.gym-study__body {
+    max-width:
+        1380px;
+}
+
+
+.gym-study__closing {
+    display: flex;
+
+    align-items: center;
+
+    gap:
+        var(--space-03);
+
+    width: fit-content;
+
+    margin-top: 0;
+    padding-top: 120px;
+    padding-bottom: calc(120px - var(--space-07));
+}
+
+/* Keep section margins inside the content observed by Lenis. */
+.gym-study__scroll-body {
+    display: flow-root;
+}
+
+html:has(body.gym-page) {
+    scroll-behavior: auto;
+}
+
+.gym-page .gym-study__content {
+    overscroll-behavior-y: auto;
+}
+
+
+.gym-study__closing p {
+    margin: 0;
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+.gym-study__closing-icon {
+    display: block;
+
+    width: 18px;
+    height: 18px;
+
+    object-fit: contain;
+}
+
+/* ============================================================
+   FINAL DESIGN — LAPTOP
+============================================================ */
+
+.gym-study__final-design {
+    position: relative;
+
+    width: 80%;
+
+    margin:
+        var(--space-08)
+        auto
+        0;
+
+    aspect-ratio:
+        805 / 513;
+
+}
+
+
+/* ============================================================
+   FINAL DESIGN — SCREEN
+============================================================ */
+
+.gym-study__screen {
+    position: absolute;
+
+    left: 15.2795%;
+    top: 16%;
+
+    z-index: 2;
+
+    width: 69.441%;
+    height: 64.2261%;
+
+    overflow: hidden;
+
+    background:
+        var(--black);
+}
+
+
+/* ============================================================
+   FINAL DESIGN — VIDEO
+============================================================ */
+
+.gym-study__video {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position:
+        top center;
+}
+
+
+/* ============================================================
+   FINAL DESIGN — LAPTOP FRAME
+============================================================ */
+
+.gym-study__mockup-frame {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   21 — FOCUS
+============================================================ */
+
+.gym-study__content:focus-visible {
+    outline:
+        1px solid
+        var(--gym-deep-ink);
+
+    outline-offset:
+        -1px;
+}
+
+
+/* ============================================================
+   22 — NARROW DESKTOP / TABLET FALLBACK
+============================================================ */
+
+@media (
+    orientation: portrait
+) {
+
+    :root {
+        --gym-page-padding:
+            var(--space-08);
+
+        --gym-study-padding:
+            var(--space-07);
+
+        --gym-section-gap:
+            var(--space-08);
+
+        --gym-subsection-gap:
+            var(--space-08);
+    }
+
+
+    .gym-hero__visual {
+        flex-basis: 62%;
+        width: 62%;
+    }
+
+
+    .gym-hero__info {
+        flex-basis: 32%;
+        width: 32%;
+    }
+
+
+    .gym-hero__title {
+        width: 76%;
+
+        font-size:
+            clamp(
+                68px,
+                7vw,
+                92px
+            );
+    }
+
+
+    .gym-study__split--challenge {
+        grid-template-columns:
+            minmax(
+                0,
+                1fr
+            )
+            minmax(
+                340px,
+                0.8fr
+            );
+    }
+
+
+    .gym-study__existing {
+        column-gap:
+            var(--space-08);
+    }
+
+
+    .gym-study__booking-layout {
+        grid-template-columns:
+            minmax(
+                0,
+                1fr
+            )
+            300px;
+    }
+
+
+    .gym-study__booking-steps {
+        column-gap:
+            var(--space-04);
+    }
+
+
+    .gym-study__booking-steps article {
+        padding:
+            var(--space-04);
+    }
+
+}
+
+
+/* ============================================================
+   23 — SMALL VIEWPORT FALLBACK
+
+   The Figma reference is desktop-first. On smaller screens,
+   release the nested-scroller pattern so the document remains
+   straightforward and usable.
+============================================================ */
+
+@media (
+    orientation: portrait
+) {
+
+    :root {
+        --gym-navbar-height:
+            96px;
+
+        --gym-page-padding:
+            var(--space-06);
+    }
+
+
+    .gym-hero {
+        height: auto;
+        min-height: 100svh;
+
+        padding:
+            var(--space-06);
+    }
+
+
+    .gym-hero__grid {
+        display: grid;
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            var(--space-08);
+    }
+
+
+    .gym-hero__visual,
+    .gym-hero__info {
+        width: 100%;
+        height: auto;
+
+        flex-basis: auto;
+    }
+
+
+    .gym-hero__visual {
+        min-height: 620px;
+    }
+
+
+    .gym-hero__title {
+        top: 0;
+
+        width: 88%;
+        min-height: 320px;
+
+        font-size:
+            clamp(
+                62px,
+                13vw,
+                96px
+            );
+    }
+
+
+    .gym-hero__mockup {
+        width: 78%;
+    }
+
+
+    .gym-hero__info {
+        gap:
+            var(--space-08);
+
+        padding-top: 0;
+    }
+
+
+    .gym-study {
+        height: auto;
+
+        overflow: visible;
+    }
+
+
+    .gym-study__workspace {
+        display: block;
+
+        height: auto;
+
+        padding:
+            var(--space-06);
+    }
+
+
+    .gym-study__sidebar {
+        display: none;
+    }
+
+
+    .gym-study__content,
+    .gym-study.is-settled
+    .gym-study__content {
+        height: auto;
+
+        padding: 0;
+
+        overflow:
+            visible;
+
+        scroll-behavior:
+            auto;
+    }
+
+
+    .gym-study__split--challenge,
+    .gym-study__existing,
+    .gym-study__booking-layout,
+    .gym-study__development-layout {
+        grid-template-columns:
+            1fr;
+
+        row-gap:
+            var(--space-07);
+    }
+
+
+    .gym-study__journey-grid,
+    .gym-study__booking-steps,
+    .gym-study__system-grid,
+    .gym-study__ia-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .gym-study__ia-card--double {
+        grid-column:
+            auto;
+    }
+
+
+    .gym-study__ia-pair {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .gym-study__system-card +
+    .gym-study__system-card {
+        border-left: 0;
+
+        border-top:
+            1px solid
+            var(--gym-rule);
+    }
+
+
+    .gym-study__image-tag {
+        right: 0;
+    }
+
+}
+
+
+/* ============================================================
+   24 — REDUCED MOTION
+============================================================ */
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    .gym-study__content {
+        scroll-behavior:
+            auto;
+    }
+
+
+    .gym-link__arrow,
+    .gym-study__toc-link,
+    .gym-study__case-studies-link {
+        transition:
+            none;
+    }
+
+}
+
+
+/* ============================================================
+   25 — FORCED COLOURS
+============================================================ */
+
+@media (
+    forced-colors: active
+) {
+
+    .gym-study__journey-grid article,
+    .gym-study__booking-steps article,
+    .gym-study__system-grid,
+    .gym-study__system-card,
+    .gym-study__existing-media img,
+    .gym-study__booking-media img,
+    .gym-study__ia-card > img,
+    .gym-study__ia-pair img {
+        border-color:
+            CanvasText;
+    }
+
+}

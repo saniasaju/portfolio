@@ -1,0 +1,8 @@
+/* All section entrances start in their final state on the return homepage. */
+html.home-is-revealed .project .project__rectangle,
+html.home-is-revealed .project .project__number,
+html.home-is-revealed .project .project__media-link,
+html.home-is-revealed .about__reveal,
+html.home-is-revealed .contact .navbar {
+    transition: none;
+}

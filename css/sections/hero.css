@@ -1,0 +1,655 @@
+/* ============================================================
+   HERO SECTION
+   Defines the boundary of the sticky Hero.
+============================================================ */
+
+hero-section {
+    display: block;
+
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+}
+
+
+/* ============================================================
+   HERO
+============================================================ */
+
+.hero {
+    position: sticky;
+    top: 0;
+
+    display: grid;
+
+    grid-template-rows:
+        auto
+        1fr
+        auto;
+
+    width: 100%;
+    height: 100vh;
+
+    background: var(--gray);
+    color: var(--black);
+}
+
+
+/* ============================================================
+   NAVBAR HOST
+============================================================ */
+
+.hero portfolio-navbar {
+    --navbar-scroll-y: 0px;
+
+    position: relative;
+
+    z-index: 3;
+
+    width: 100%;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translateY(-64px);
+
+    pointer-events: none;
+
+    will-change:
+        transform,
+        opacity;
+
+    transition:
+        transform
+        800ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        opacity
+        450ms
+        ease-out;
+}
+
+
+/* ============================================================
+   NAVBAR REVEALED
+============================================================ */
+
+.hero.is-chrome-visible
+portfolio-navbar {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+/* ============================================================
+   HERO CONTENT
+============================================================ */
+
+.hero__content {
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    column-gap: var(--space-08);
+
+    padding: var(--space-07);
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   HERO TITLE
+============================================================ */
+
+.hero__title {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    z-index: 2;
+
+    width: calc((100% - 240px) * 0.92);
+    max-width: 1540.08px;
+
+    aspect-ratio: 1674 / 426;
+
+    transform: translate(-51.854%, -50%);
+
+    pointer-events: none;
+}
+
+/* ============================================================
+   HERO TITLE SVG LAYERS
+============================================================ */
+
+.hero__title-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: var(--hero-layer-width);
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+    user-select: none;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+/* Cropped SVGs use the reference's 1674 × 426 composition coordinates.
+   Keep translations relative to that canvas, rather than each crop. */
+.hero__title-core {
+    --hero-layer-width: calc(100% * 322 / 1674);
+    left: calc(100% * 707 / 1674);
+}
+
+.hero__title-esigner {
+    --hero-layer-width: calc(100% * 629 / 1674);
+    --hero-enter-x: calc(-15% * 1674 / 629);
+    left: calc(100% * 1045 / 1674);
+}
+
+.hero__title-eveloper {
+    --hero-layer-width: calc(100% * 691 / 1674);
+    --hero-enter-x: calc(20% * 1674 / 691);
+}
+
+.hero__title-metadata-left {
+    --hero-layer-width: calc(100% * 191 / 1674);
+    --hero-enter-x: calc(13% * 1674 / 191);
+    top: calc(100% * 37 / 426);
+    left: calc(100% * 620 / 1674);
+    height: calc(100% * 87 / 426);
+}
+
+.hero__title-metadata-right {
+    --hero-layer-width: calc(100% * 221 / 1674);
+    --hero-enter-x: calc(-12% * 1674 / 221);
+    top: calc(100% * 258 / 426);
+    left: calc(100% * 926 / 1674);
+    height: calc(100% * 83 / 426);
+}
+
+
+/* Moving typography stays behind the D */
+
+.hero__title-metadata,
+.hero__title-esigner,
+.hero__title-eveloper {
+    z-index: 1;
+}
+
+
+/* Central D stays above */
+
+.hero__title-core {
+    z-index: 2;
+}
+
+
+/* ============================================================
+   STAGE 01 — CENTRAL D
+============================================================ */
+
+/*
+    The D is invisible even after loading has finished.
+
+    hero.js explicitly starts this stage so removal of
+    body.is-loading does not trigger everything at once.
+*/
+
+.hero__title-core {
+    opacity: 0;
+
+    transform: scale(0.985);
+
+    transition:
+        opacity
+        650ms
+        cubic-bezier(0.22, 1, 0.36, 1),
+
+        transform
+        850ms
+        cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* D becomes visible */
+
+.hero.is-core-visible .hero__title-core {
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+/* ============================================================
+   STAGE 02 — CENTRAL TYPOGRAPHY
+============================================================ */
+
+/*
+    Everything starts visually close to the D.
+
+    These values preserve the motion direction from your
+    current version.
+*/
+
+
+/* LEFT METADATA */
+
+.hero__title-metadata-left {
+    opacity: 0;
+
+    transform: translateX(var(--hero-enter-x));
+}
+
+
+/* ESIGNER */
+
+.hero__title-esigner {
+    opacity: 0;
+
+    transform: translateX(var(--hero-enter-x));
+}
+
+
+/* EVELOPER */
+
+.hero__title-eveloper {
+    opacity: 0;
+
+    transform: translateX(var(--hero-enter-x));
+}
+
+
+/* RIGHT METADATA */
+
+.hero__title-metadata-right {
+    opacity: 0;
+
+    transform: translateX(var(--hero-enter-x));
+}
+
+
+/* ============================================================
+   STAGE 02 — FINAL POSITIONS
+============================================================ */
+
+.hero.is-title-visible
+.hero__title-metadata-left,
+
+.hero.is-title-visible
+.hero__title-metadata-right,
+
+.hero.is-title-visible
+.hero__title-esigner,
+
+.hero.is-title-visible
+.hero__title-eveloper {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+/* ============================================================
+   ESIGNER MOTION
+============================================================ */
+
+.hero__title-esigner {
+    transition:
+        transform
+        900ms
+        cubic-bezier(0.16, 1, 0.3, 1)
+        100ms,
+
+        opacity
+        350ms
+        ease-out
+        100ms;
+}
+
+
+/* ============================================================
+   EVELOPER MOTION
+============================================================ */
+
+.hero__title-eveloper {
+    transition:
+        transform
+        1000ms
+        cubic-bezier(0.16, 1, 0.3, 1)
+        140ms,
+
+        opacity
+        400ms
+        ease-out
+        140ms;
+}
+
+
+/* ============================================================
+   METADATA MOTION
+============================================================ */
+
+.hero__title-metadata-left,
+.hero__title-metadata-right {
+    transition:
+        transform
+        800ms
+        cubic-bezier(0.16, 1, 0.3, 1)
+        220ms,
+
+        opacity
+        350ms
+        ease-out
+        220ms;
+}
+
+
+/* ============================================================
+   HERO FOOTER
+============================================================ */
+
+.hero__footer {
+    position: relative;
+
+    z-index: 3;
+
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 128px;
+    padding: var(--space-07);
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(
+        var(--space-07)
+    );
+
+    pointer-events: none;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+
+/* ============================================================
+   HERO FOOTER — REVEALED
+============================================================ */
+
+/*
+    Navbar and footer use the same parent state.
+
+    Therefore they begin their reveal on exactly
+    the same animation frame.
+*/
+
+.hero.is-chrome-visible .hero__footer {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+
+    transition:
+        transform
+        800ms
+        cubic-bezier(0.16, 1, 0.3, 1),
+
+        opacity
+        450ms
+        ease-out;
+}
+
+
+/* ============================================================
+   SOCIAL LINKS
+============================================================ */
+
+.hero__socials {
+    display: flex;
+
+    align-items: center;
+
+    gap: var(--space-04);
+}
+
+
+.social-link {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+
+    flex-shrink: 0;
+
+    padding: 0;
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: scale 0.3s ease-in-out;
+}
+
+.social-link img {
+    width: 80%;
+    height: 80%;
+
+    object-fit: contain;
+}
+
+.social-link:hover {
+    opacity: 0.7;
+        scale: 1.02;
+}
+
+/* ============================================================
+   COPY EMAIL FEEDBACK
+============================================================ */
+
+.copy-feedback {
+    position: absolute;
+
+    left: 50%;
+    bottom: calc(100% + 12px);
+
+    z-index: 10;
+
+    padding:
+        var(--space-02)
+        var(--space-03);
+
+    transform:
+        translateX(-50%)
+        translateY(4px);
+
+    background: var(--black);
+
+    color: var(--paper);
+
+    font-family: var(--metadata-family);
+    font-size: var(--metadata-size);
+    font-weight: var(--metadata-weight);
+    line-height: var(--metadata-line-height);
+
+    text-transform: none;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity
+        200ms
+        ease,
+
+        transform
+        200ms
+        ease,
+
+        visibility
+        0s
+        linear
+        200ms;
+}
+
+
+.social-link--email.is-copied
+.copy-feedback {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+    transition:
+        opacity
+        200ms
+        ease,
+
+        transform
+        200ms
+        ease,
+
+        visibility
+        0s;
+}
+
+/* ============================================================
+   HERO SCROLL CTA
+============================================================ */
+
+.hero__scroll {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: var(--space-04);
+
+    width: fit-content;
+}
+
+
+.hero__scroll-label {
+    font-family: var(--info-family);
+    font-size: var(--info-size);
+    font-weight: var(--info-weight);
+    font-style: var(--info-style);
+    line-height: var(--info-line-height);
+    white-space: nowrap;
+}
+
+/* ============================================================
+   FOCUS STATES
+============================================================ */
+
+.social-link:focus-visible,
+.hero__scroll:focus-visible {
+    outline:
+        2px solid
+        var(--black);
+
+    outline-offset: var(--space-02);
+}
+
+
+/* Returning home: show the final intro state before the first paint. */
+html.home-is-revealed .hero .hero__title-layer,
+html.home-is-revealed .hero .hero__footer,
+html.home-is-revealed .hero portfolio-navbar {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+}
+
+html.home-is-revealed .hero .hero__footer,
+html.home-is-revealed .hero portfolio-navbar {
+    pointer-events: auto;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero__title-core,
+    .hero__title-metadata,
+    .hero__title-esigner,
+    .hero__title-eveloper,
+    .hero__footer,
+    .hero portfolio-navbar {
+        transition: none !important;
+    }
+
+    .hero.is-core-visible
+    .hero__title-core,
+
+    .hero.is-title-visible
+    .hero__title-metadata,
+
+    .hero.is-title-visible
+    .hero__title-esigner,
+
+    .hero.is-title-visible
+    .hero__title-eveloper,
+
+    .hero.is-chrome-visible
+    .hero__footer,
+
+    .hero.is-chrome-visible
+    .hero portfolio-navbar {
+        opacity: 1 !important;
+
+        transform: none !important;
+    }
+
+}

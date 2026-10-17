@@ -1,0 +1,707 @@
+/* ============================================================
+   SANIA SAJU — PORTFOLIO
+   SELECTED PROJECTS
+============================================================ */
+
+
+/* ============================================================
+   PROJECTS HOST
+
+   Home-page stacking is controlled by home.css.
+============================================================ */
+
+projects-section {
+    display: block;
+
+    position: relative;
+
+    width: 100%;
+
+    background-color: var(--gray);
+
+    background-image:
+        url("../../assets/images/grid.svg");
+
+    background-repeat: repeat;
+    background-position: top left;
+    background-size: 50px 50px;
+}
+
+
+/* ============================================================
+   SELECTED PROJECTS
+============================================================ */
+
+.projects {
+    position: relative;
+
+    width: 100%;
+
+    background: transparent;
+}
+
+
+/* ============================================================
+   PROJECTS TRACK
+
+   3 projects × 100vh
+============================================================ */
+
+.projects__inner {
+    width: 100%;
+    height: 300vh;
+}
+
+
+/* ============================================================
+   PROJECT FRAME
+============================================================ */
+
+.project {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    grid-template-rows:
+        1fr
+        auto
+        1fr;
+
+    width: 100%;
+    height: 100vh;
+}
+
+
+/* ============================================================
+   PROJECT CONTENT
+============================================================ */
+
+.project__content {
+    grid-column: 1;
+    grid-row: 2;
+
+    justify-self: start;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: var(--space-05);
+
+    margin-left: var(--space-10);
+    margin-right: var(--space-10);
+}
+
+
+/* ============================================================
+   PROJECT TITLE
+============================================================ */
+
+.project__title {
+    font-family: var(--h3-family);
+    font-size: var(--h3-size);
+    font-weight: var(--h3-weight);
+    line-height: var(--h3-line-height);
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   PROJECT TYPE
+============================================================ */
+
+.project__type {
+    font-family: var(--body-large-family);
+    font-size: var(--body-large-size);
+    font-weight: var(--body-large-weight);
+    line-height: var(--body-large-line-height);
+}
+
+
+/* ============================================================
+   PROJECT DESCRIPTION
+============================================================ */
+
+.project__description {
+    width: 100%;
+
+    font-family: var(--body-family);
+    font-size: var(--body-size);
+    font-weight: var(--body-weight);
+    line-height: var(--body-line-height);
+}
+
+
+/* ============================================================
+   PROJECT TAGS
+============================================================ */
+
+.project__tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap:
+        var(--space-02)
+        var(--space-04);
+
+    font-family: var(--metadata-family);
+    font-size: var(--metadata-size);
+    font-weight: var(--metadata-weight);
+    line-height: var(--metadata-line-height);
+}
+
+
+/* ============================================================
+   PROJECT CTA
+============================================================ */
+
+.project__cta {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: var(--space-04);
+
+    width: fit-content;
+
+    font-family: var(--info-family);
+    font-size: var(--info-size);
+    font-weight: var(--info-weight);
+    font-style: var(--info-style);
+    line-height: var(--info-line-height);
+}
+
+
+/* ============================================================
+   PROJECT VISUAL
+============================================================ */
+
+.project__visual {
+    position: relative;
+
+    grid-column: 2;
+    grid-row: 2;
+
+    align-self: stretch;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+
+/* ============================================================
+   PROJECT RECTANGLE
+============================================================ */
+
+.project__rectangle {
+    position: absolute;
+    inset: 0;
+
+    z-index: 0;
+
+    background: var(--subtle);
+
+    opacity: 0;
+
+    transform:
+        translateX(120px);
+
+    will-change:
+        transform,
+        opacity;
+
+    transition:
+        transform
+        1s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        opacity
+        0.65s
+        ease-out;
+}
+
+
+/* ============================================================
+   PROJECT RECTANGLE — REVEAL
+============================================================ */
+
+.project.is-visible
+.project__rectangle {
+    opacity: 1;
+
+    transform:
+        translateX(0);
+}
+
+
+.project.is-revealed
+.project__rectangle {
+    will-change: auto;
+}
+
+
+/* ============================================================
+   PROJECT NUMBER
+============================================================ */
+
+.project__number {
+    position: absolute;
+
+    left: var(--space-06);
+    bottom: var(--space-06);
+
+    z-index: 1;
+
+    font-family: var(--h2-family);
+    font-size: var(--h2-size);
+    font-weight: var(--h2-weight);
+    line-height: var(--h2-line-height);
+
+    opacity: 0;
+
+    transform:
+        translateX(120px);
+
+    transition:
+        transform
+        1s
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        ),
+
+        opacity
+        0.65s
+        ease-out;
+}
+
+
+.project.is-visible
+.project__number {
+    opacity: 1;
+
+    transform:
+        translateX(0);
+}
+
+
+/* ============================================================
+   PROJECT MEDIA LINK
+============================================================ */
+
+.project__media-link {
+    position: absolute;
+
+    top: 50%;
+    right: var(--space-06);
+
+    z-index: 2;
+
+    display: block;
+
+    opacity: 0;
+
+    transform:
+        translateY(-50%)
+        scale(0.8);
+
+    transform-origin: center;
+
+    will-change:
+        transform,
+        opacity;
+
+    cursor: pointer;
+
+    transition:
+        opacity
+        650ms
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+
+        transform
+        850ms
+        cubic-bezier(
+            0.16,
+            1,
+            0.3,
+            1
+        );
+}
+
+
+/* ============================================================
+   PROJECT MEDIA — REVEAL
+============================================================ */
+
+.project.is-visible
+.project__media-link {
+    opacity: 1;
+
+    transform:
+        translateY(-50%)
+        scale(1);
+}
+
+
+.project.is-revealed
+.project__media-link {
+    will-change: auto;
+}
+
+
+.project.is-visible
+.project__media-link:hover {
+    opacity: 0.9;
+}
+
+
+/* ============================================================
+   GENERIC PROJECT MEDIA
+============================================================ */
+
+.project__media-placeholder {
+    width: 100%;
+    height: 100%;
+}
+
+
+.project__media {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+
+/* ============================================================
+   PROJECT 02 — REVERSE LAYOUT
+============================================================ */
+
+.project--reverse
+.project__visual {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+
+.project--reverse
+.project__rectangle {
+    transform:
+        translateX(-120px);
+}
+
+
+.project--reverse.is-visible
+.project__rectangle {
+    transform:
+        translateX(0);
+}
+
+
+.project--reverse
+.project__content {
+    grid-column: 2;
+    grid-row: 2;
+
+    justify-self: end;
+
+    margin-left: var(--space-10);
+    margin-right: var(--space-10);
+}
+
+
+.project--reverse
+.project__number {
+    right: var(--space-07);
+    bottom: var(--space-07);
+
+    left: auto;
+
+    transform:
+        translateX(-120px);
+}
+
+
+.project--reverse.is-visible
+.project__number {
+    transform:
+        translateX(0);
+}
+
+
+.project--reverse
+.project__media-link {
+    left: 220px;
+    right: auto;
+}
+
+
+/* ============================================================
+   CAMPINN — MOBILE MOCKUP
+============================================================ */
+
+.project__media-link--mobile {
+    width: 35%;
+    height: auto;
+
+    aspect-ratio: 989 / 2000;
+}
+
+
+.mobile-mockup {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 989 / 2000;
+}
+
+
+/* ============================================================
+   CAMPINN — SCREEN
+============================================================ */
+
+/*
+   Original SVG dimensions:
+   989 × 2000
+
+   Transparent screen opening:
+   x = 55
+   y = 48
+   w = 879
+   h = 1904
+*/
+
+.mobile-mockup__screen {
+    position: absolute;
+
+    /* Overlap the frame slightly to prevent subpixel gaps at its edges. */
+    left: calc(5.5612% - 1px);
+    top: calc(2.4% - 1px);
+
+    z-index: 1;
+
+    width: calc(88.8777% + 2px);
+    height: calc(95.2% + 2px);
+
+    overflow: hidden;
+
+    border-radius:
+        12.2% / 5.6%;
+
+    background: #FFFFFF;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   CAMPINN — VIDEO
+============================================================ */
+
+.mobile-mockup__video {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   CAMPINN — DEVICE FRAME
+============================================================ */
+
+.mobile-mockup__frame {
+    position: absolute;
+    inset: 0;
+
+    z-index: 2;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   ALPHONSIANS' GYM — LAPTOP MOCKUP
+============================================================ */
+
+.project__media-link--laptop {
+    width: 100%;
+
+    padding-left: 100px;
+
+    aspect-ratio: 805 / 513;
+}
+
+
+.laptop-mockup {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    aspect-ratio: 805 / 513;
+}
+
+
+/* ============================================================
+   LAPTOP FRAME
+============================================================ */
+
+.laptop-mockup__frame {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   LAPTOP SCREEN
+============================================================ */
+
+.laptop-mockup__screen {
+    position: relative;
+
+    left: 15.2795%;
+    top: 16%;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 69.441%;
+    height: 64.2261%;
+
+    background: var(--black);
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   LAPTOP VIDEO
+============================================================ */
+
+.laptop-mockup__video,
+.laptop-mockup__image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    background: var(--black);
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   FOCUS STATES
+============================================================ */
+
+.project__cta:focus-visible,
+.project__media-link:focus-visible {
+    outline:
+        2px solid
+        var(--black);
+
+    outline-offset: var(--space-02);
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .project__rectangle,
+    .project__number,
+    .project__media-link {
+        transition: none !important;
+    }
+
+
+    .project__rectangle,
+    .project__number {
+        opacity: 1;
+
+        transform: none !important;
+    }
+
+
+    .project__media-link {
+        opacity: 1;
+
+        transform:
+            translateY(-50%)
+            scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   FORCED COLORS
+============================================================ */
+
+@media (forced-colors: active) {
+
+    projects-section {
+        background-image: none;
+    }
+
+
+    .project__visual {
+        border:
+            1px solid
+            CanvasText;
+    }
+
+}

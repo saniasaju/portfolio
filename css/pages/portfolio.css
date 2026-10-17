@@ -1,0 +1,2154 @@
+/* ============================================================
+   SANIA SAJU — PORTFOLIO CASE STUDY
+   DESKTOP VERSION
+
+   ------------------------------------------------------------
+   Layout principles
+   ------------------------------------------------------------
+   - Desktop only
+   - Existing navbar component remains untouched
+   - Navbar receives only page-level positioning/background
+   - Hero padding = 120px
+   - Hero columns use auto space-between
+   - Left + right columns fill full Hero content height
+   - Laptop = top-right of left column
+   - Title = bottom-left of left column
+   - Details = top of right column
+   - Summary = bottom of right column
+   - Case-study column gap = 64px
+   - Case-study section gap = 120px
+   - Heading → content gap = 48px
+============================================================ */
+
+
+/* ============================================================
+   01 — PAGE TOKENS
+============================================================ */
+
+:root {
+
+    /* --------------------------------------------------------
+       PAGE
+    --------------------------------------------------------- */
+
+    --portfolio-page-padding:
+        var(--space-10);
+
+    --portfolio-column-gap:
+        var(--space-08);
+
+    --portfolio-section-gap:
+        var(--space-10);
+
+    --portfolio-heading-gap:
+        var(--space-07);
+
+
+    /* --------------------------------------------------------
+       NAVBAR
+
+       Current desktop navbar:
+       64px top
+       + 16px text
+       + 64px bottom
+       ≈ 144px
+
+       This does NOT restyle the navbar.
+       It only lets this page calculate its viewport geometry.
+    --------------------------------------------------------- */
+
+    --portfolio-navbar-height:
+        112px;
+
+
+    /* --------------------------------------------------------
+       CASE STUDY COLOURS
+    --------------------------------------------------------- */
+
+    --portfolio-deep-ink:
+        var(--black);
+
+    --portfolio-muted-ink:
+        var(--muted);
+
+    --portfolio-hero-block:
+        #D8D8D8;
+
+    --portfolio-rule:
+        rgba(
+            7,
+            7,
+            7,
+            0.24
+        );
+
+    --portfolio-media:
+        #E4E4E4;
+}
+
+
+/* ============================================================
+   02 — PAGE
+============================================================ */
+
+html,
+body {
+    width: 100%;
+
+    min-height: 100%;
+}
+
+
+body.portfolio-page {
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+
+    background:
+        var(--paper);
+
+    color:
+        var(--portfolio-deep-ink);
+}
+
+
+.portfolio-case {
+    display: block;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   03 — PAGE NAVBAR
+
+   IMPORTANT:
+
+   We do NOT alter:
+   .portfolio-navbar
+   .nav
+   .nav__links
+   .nav__link
+
+   All of those remain controlled by navbar.css.
+
+   This selector only controls the custom-element host on
+   this specific page.
+============================================================ */
+
+.portfolio-page__navbar {
+    position: sticky;
+
+    top: 0;
+    padding-left: var(--space-04);
+    padding-right: var(--space-04);
+
+    z-index: 1000;
+
+    display: block;
+
+    width: 100%;
+
+    background:
+        var(--paper);
+}
+
+
+/*
+   The homepage Hero stylesheet hides portfolio-navbar
+   during its entrance sequence.
+
+   This case-study navbar is not part of that Hero animation,
+   so it must remain visible.
+*/
+
+body.portfolio-page
+.portfolio-page__navbar {
+    opacity: 1;
+    visibility: visible;
+
+    transform: none;
+
+    pointer-events: auto;
+}
+
+
+/* ============================================================
+   04 — HERO
+============================================================ */
+
+.portfolio-hero {
+    position: relative;
+
+    width: 100%;
+
+    height:
+        calc(
+            100vh -
+            var(--portfolio-navbar-height)
+        );
+
+    min-height: 0;
+
+    padding: var(--space-10);
+    padding-top: var(--space-06);
+
+    overflow: hidden;
+
+    background:
+        var(--paper);
+}
+
+
+/* ============================================================
+   HERO CONTENT
+============================================================ */
+
+.portfolio-hero__content {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+/* ============================================================
+   HERO GRID
+
+   Figma equivalent:
+   Auto Layout
+   Horizontal
+   Space Between
+
+   There is deliberately NO gap value here.
+
+   Left width  = 50%
+   Right width = 40%
+
+   Remaining 10% automatically becomes the space between.
+============================================================ */
+
+.portfolio-hero__grid {
+    display: flex;
+
+    align-items: stretch;
+    justify-content: space-between;
+
+    gap: 0;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+/* ============================================================
+   05 — HERO LEFT
+============================================================ */
+
+.portfolio-hero__visual {
+    position: relative;
+
+    flex:
+        0
+        0
+        57%;
+
+    width: 57%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+/* ============================================================
+   HERO TITLE
+
+   One element:
+   background + text.
+
+   Anchored bottom-left of the FULL left column.
+============================================================ */
+
+.portfolio-hero__title {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    min-height: 70%;
+
+    margin: 0;
+
+    padding:
+        var(--space-06);
+
+    background:
+        var(--portfolio-hero-block);
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--h1-family);
+
+    font-size:
+        var(--h1-size);
+
+    font-weight:
+        var(--h1-weight);
+
+    line-height:
+        var(--h1-line-height);
+
+    letter-spacing:
+        var(--h1-letter-spacing);
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   06 — HERO LAPTOP
+
+   Anchored to the TOP-RIGHT of the full left column.
+
+   Because Hero info is also anchored to the top of its
+   full-height column, the mockup and details automatically
+   share the same top alignment.
+============================================================ */
+
+.portfolio-hero__mockup {
+    position: absolute;
+
+    top: -30px;
+    right: 0;
+
+    z-index: 3;
+
+    width: 68%;
+
+    margin: 0;
+
+    aspect-ratio:
+        805 / 513;
+}
+
+
+/* ============================================================
+   HERO LAPTOP SCREEN
+============================================================ */
+
+.portfolio-hero__screen {
+    position: absolute;
+
+    left: 15.2795%;
+    top: 16%;
+
+    z-index: 3;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 69.441%;
+    height: 64.2261%;
+
+    overflow: hidden;
+
+    background:
+        var(--portfolio-deep-ink);
+
+    color:
+        var(--paper);
+
+    pointer-events: none;
+}
+
+
+.portfolio-hero__screen-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* ============================================================
+   HERO LAPTOP FRAME
+============================================================ */
+
+.portfolio-hero__mockup-frame {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   07 — HERO RIGHT
+
+   Entire available Hero height.
+
+   Details remain at top.
+   Summary remains at bottom.
+
+   The space between them is automatic.
+============================================================ */
+
+.portfolio-hero__info {
+    display: flex;
+
+    flex:
+        0
+        0
+        35%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    justify-content:
+        space-between;
+
+    width: 35%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+
+/* ============================================================
+   HERO DETAILS
+============================================================ */
+
+.portfolio-hero__details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ============================================================
+   HERO DETAIL ROW
+
+   Label + value
+============================================================ */
+
+.portfolio-hero__detail {
+    display: grid;
+
+    grid-template-columns:
+        142px
+        minmax(
+            0,
+            1fr
+        );
+
+    column-gap:
+        var(--space-06);
+
+    align-items: baseline;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   HERO DETAIL LABEL
+============================================================ */
+
+.portfolio-hero__detail dt {
+    margin: 0;
+
+    color:
+        var(--portfolio-muted-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   HERO DETAIL VALUE
+============================================================ */
+
+.portfolio-hero__detail dd {
+    margin: 0;
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   HERO SUMMARY
+
+   No margin-top.
+
+   justify-content: space-between on .portfolio-hero__info
+   creates the automatic space between details and summary.
+============================================================ */
+
+.portfolio-hero__summary {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    margin: 0;
+}
+
+
+/* ============================================================
+   HERO SUMMARY LEAD
+============================================================ */
+
+.portfolio-hero__summary-title {
+    margin: 0;
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+/* ============================================================
+   HERO SUMMARY BODY
+============================================================ */
+
+.portfolio-hero__summary p:not(
+    .portfolio-hero__summary-title
+) {
+    width: 100%;
+    max-width: 600px;
+
+    margin: 0;
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   08 — CASE STUDY
+
+   SCROLL BEHAVIOUR
+   ------------------------------------------------------------
+   01. Case Study begins below the Hero.
+   02. Normal page scrolling brings it upward.
+   03. It fills the viewport behind the sticky navbar.
+   04. Its workspace begins directly below the navbar.
+   05. Once settled, only the right content column scrolls.
+============================================================ */
+
+.portfolio-study {
+    position: relative;
+
+    width: 100%;
+
+    height:
+        calc(
+            100vh -
+            var(--portfolio-navbar-height)
+        );
+
+    overflow: hidden;
+
+    background:
+        var(--paper);
+}
+
+
+/* ============================================================
+   CASE STUDY WORKSPACE
+
+   Left  = stationary Contents
+   Right = scrollable case-study content
+
+   The workspace occupies everything BELOW the navbar.
+============================================================ */
+
+.portfolio-study__workspace {
+    display: grid;
+
+    grid-template-columns:
+        162px
+        minmax(
+            0,
+            1fr
+        );
+
+    width: 100%;
+    height: 100%;
+
+    padding: var(--space-08);
+    padding-bottom: var(--space-07);
+    padding-top: 0;
+
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   09 — CASE STUDY SIDEBAR
+============================================================ */
+
+.portfolio-study__sidebar {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+/* ============================================================
+   CONTENTS LABEL
+============================================================ */
+
+.portfolio-study__contents-label {
+    margin:
+        0
+        0
+        var(--space-01);
+
+    color:
+        var(--portfolio-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space:
+        nowrap;
+}
+
+
+/* ============================================================
+   TABLE OF CONTENTS
+============================================================ */
+
+.portfolio-study__toc {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap:
+        var(--space-01);
+}
+
+
+/* ============================================================
+   TOC LINK
+============================================================ */
+
+.portfolio-study__toc-link {
+    position: relative;
+
+    display: inline-block;
+
+    width: fit-content;
+
+    margin: 0;
+    padding: 0;
+
+    color:
+        var(--portfolio-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space:
+        nowrap;
+
+    transition:
+        color
+        var(--interaction-duration)
+        var(--interaction-easing);
+}
+
+
+/* ============================================================
+   ACTIVE SECTION
+============================================================ */
+
+.portfolio-study__toc-link.is-active,
+.portfolio-study__toc-link[aria-current="true"] {
+    color:
+        var(--portfolio-deep-ink);
+    font-weight: 500;
+}
+
+
+/* ============================================================
+   HOVER
+============================================================ */
+
+.portfolio-study__toc-link:hover {
+    color:
+        var(--portfolio-deep-ink);
+}
+
+
+/* ============================================================
+   KEYBOARD FOCUS
+============================================================ */
+
+.portfolio-study__toc-link:focus-visible {
+    color:
+        var(--portfolio-deep-ink);
+
+    outline:
+        1px solid
+        currentColor;
+
+    outline-offset:
+        6px;
+}
+
+/* ============================================================
+   CASE STUDIES
+============================================================ */
+
+.portfolio-study__case-studies {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width: 100%;
+}
+
+/* ============================================================
+   CASE STUDIES NAV
+============================================================ */
+
+.portfolio-study__case-study-nav {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: var(--space-01);
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   CASE STUDY LINK
+============================================================ */
+
+.portfolio-study__case-study-link {
+    position: relative;
+
+    display: inline-block;
+
+    width: fit-content;
+
+    margin: 0;
+    padding: 0;
+
+    color:
+        var(--portfolio-muted-ink);
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(--metadata-weight);
+
+    line-height:
+        var(--metadata-line-height);
+
+    white-space: nowrap;
+
+    transition:
+        color
+        var(--interaction-duration)
+        var(--interaction-easing);
+}
+
+
+/* ============================================================
+   CURRENT CASE STUDY
+============================================================ */
+
+.portfolio-study__case-study-link.is-current,
+.portfolio-study__case-study-link[aria-current="page"] {
+    color:
+        var(--portfolio-deep-ink);
+
+    font-weight: 500;
+}
+
+
+/* ============================================================
+   HOVER
+============================================================ */
+
+.portfolio-study__case-study-link:hover {
+    color:
+        var(--portfolio-deep-ink);
+}
+
+
+/* ============================================================
+   FOCUS
+============================================================ */
+
+.portfolio-study__case-study-link:focus-visible {
+    outline:
+        1px solid
+        currentColor;
+
+    outline-offset:
+        6px;
+}
+
+/* ============================================================
+   10 — CASE STUDY CONTENT
+
+   INITIAL STATE
+
+   While the Case Study is still rising into the viewport,
+   the inner content MUST NOT scroll.
+
+   Wheel / trackpad movement therefore continues moving the
+   whole document until the section reaches its final position.
+============================================================ */
+
+.portfolio-study__content {
+    min-width: 0;
+    min-height: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding-left: var(--space-10);
+    padding-right: var(--space-08);
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    /* Reserve the scrollbar width before the workspace becomes scrollable. */
+    scrollbar-gutter: stable;
+
+    /* Lenis controls wheel and Contents navigation in this column. */
+    scroll-behavior: auto;
+
+    scrollbar-color:
+        var(--portfolio-muted-ink)
+        transparent;
+}
+
+
+/* ============================================================
+   CASE STUDY — SETTLED
+
+   portfolio.js adds .is-settled only once the Case Study
+   has completely reached the viewport.
+
+   At this point:
+   - navbar stays above
+   - Contents remains stationary
+   - right content becomes scrollable
+============================================================ */
+
+.portfolio-study.is-settled
+.portfolio-study__content {
+    overflow-y: auto;
+}
+
+
+/* ============================================================
+   CONTENT SCROLLBAR
+============================================================ */
+
+.portfolio-study__content::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+.portfolio-study__content::-webkit-scrollbar-track {
+    background:
+        transparent;
+}
+
+
+.portfolio-study__content::-webkit-scrollbar-thumb {
+    background:
+        var(--portfolio-muted-ink);
+
+    border:
+        2px solid
+        transparent;
+
+    background-clip:
+        content-box;
+}
+
+
+/* ============================================================
+   11 — CASE STUDY SECTION
+============================================================ */
+
+.portfolio-study__section {
+    width: 100%;
+
+    margin: 0;
+
+    scroll-margin-top:
+        var(--space-07);
+}
+
+
+/* ============================================================
+   SECTION → SECTION
+   120px
+============================================================ */
+
+.portfolio-study__section +
+.portfolio-study__section {
+    margin-top:
+        var(--portfolio-section-gap);
+}
+
+
+/* ============================================================
+   SECTION HEADING
+   H3
+============================================================ */
+
+.portfolio-study__heading {
+    margin: 0;
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--h3-family);
+
+    font-size:
+        var(--h3-size);
+
+    font-weight:
+        var(--h3-weight);
+
+    line-height:
+        var(--h3-line-height);
+
+    letter-spacing:
+        var(--h3-letter-spacing);
+}
+
+
+/* ============================================================
+   HEADING → BODY
+   48px
+============================================================ */
+
+.portfolio-study__heading +
+.portfolio-study__body,
+
+.portfolio-study__heading +
+.portfolio-study__split,
+
+.portfolio-study__subheading +
+.portfolio-study__body,
+
+.portfolio-study__subheading +
+.portfolio-study__split {
+    margin-top:
+        var(--portfolio-heading-gap);
+}
+
+
+/* ============================================================
+   BODY COPY
+============================================================ */
+
+.portfolio-study__body {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-05);
+
+    width: 100%;
+
+    max-width: 1100px;
+}
+
+
+.portfolio-study__body p {
+    margin: 0;
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+/* ============================================================
+   INLINE TEXT EMPHASIS
+============================================================ */
+
+.portfolio-study__body strong,
+.portfolio-study__sequence strong {
+    color:
+        var(--portfolio-deep-ink);
+
+    font-weight:
+        500;
+}
+
+/* ============================================================
+   12 — GENERIC SPLIT LAYOUT
+============================================================ */
+
+.portfolio-study__split {
+    display: grid;
+
+    column-gap:
+        var(--space-08);
+
+    align-items: center;
+
+    width: 100%;
+
+    overflow: visible;
+}
+
+.portfolio-study__split
+.portfolio-study__media {
+    align-self: center;
+
+    overflow: visible;
+}
+
+.portfolio-study__split {
+    grid-template-columns:
+        minmax(
+            0,
+            1fr
+        )
+        minmax(
+            0,
+            1fr
+        );
+}
+
+/* ============================================================
+   13 — MEDIA
+============================================================ */
+
+.portfolio-study__media {
+    align-self: center;
+
+    width: 100%;
+
+    margin: 0;
+
+    overflow: visible;
+}
+
+.portfolio-study__media img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+}
+
+/* ============================================================
+   14 — PERSONAL BRANDING
+============================================================ */
+
+.portfolio-study__brand-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    width: 100%;
+
+    margin:
+        var(--portfolio-heading-gap)
+        0;
+
+    border:
+        1px solid
+        var(--portfolio-rule);
+}
+
+
+/* ============================================================
+   BRAND CARD
+============================================================ */
+
+.portfolio-study__brand-card {
+    min-width: 0;
+
+    padding:
+        var(--space-05);
+}
+
+
+.portfolio-study__brand-card +
+.portfolio-study__brand-card {
+    border-left:
+        1px solid
+        var(--portfolio-rule);
+}
+
+
+.portfolio-study__brand-card h3 {
+    margin:
+        0
+        0
+        var(--space-04);
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+.portfolio-study__brand-card p {
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   15 — INFORMATION ARCHITECTURE
+============================================================ */
+
+/*
+   The text column determines the height of this section.
+
+   The media is removed from normal flow and vertically
+   centred against the complete text column.
+
+   This allows a tall IA image to overflow above / below
+   without creating additional empty space in the section.
+*/
+
+.portfolio-study__split--ia {
+    position: relative;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(0, 0.5fr);
+
+    column-gap:
+        var(--space-08);
+
+    align-items: start;
+
+    overflow: visible;
+}
+
+
+/* ============================================================
+   IA TEXT COLUMN
+
+   This remains in normal document flow and therefore
+   determines the height of the section.
+============================================================ */
+
+.portfolio-study__split--ia
+.portfolio-study__text-column {
+    grid-column: 1;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   IA MEDIA
+
+   Removed from document flow.
+
+   Its vertical centre matches the vertical centre of the
+   complete text column.
+============================================================ */
+
+.portfolio-study__split--ia
+.portfolio-study__media--ia {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width:
+        calc(
+            (
+                100% -
+                var(--space-08)
+            ) /
+            3
+        );
+
+    margin: 0;
+
+    align-self: top;
+
+    transform: translateY(-7%);
+
+    overflow: visible;
+}
+
+
+/* ============================================================
+   IA IMAGE
+============================================================ */
+
+.portfolio-study__split--ia
+.portfolio-study__media--ia img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* ============================================================
+   16 — VISUAL SYSTEM
+============================================================ */
+#visual-system {
+        width: 100%;
+}
+
+.portfolio-study__system-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    margin-top:
+        var(--portfolio-heading-gap);
+
+    border:
+        1px solid
+        var(--portfolio-rule);
+}
+
+
+/* ============================================================
+   SYSTEM CARD
+============================================================ */
+
+.portfolio-study__system-card {
+    min-width: 0;
+
+    padding: var(--space-06);
+}
+
+
+.portfolio-study__system-card +
+.portfolio-study__system-card {
+    padding-left:
+        var(--space-06);
+
+    border-left: 
+        1px 
+        solid
+        var(--portfolio-rule);
+}
+
+
+.portfolio-study__system-card > p {
+    margin: 0;
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        var(--metadata-size);
+
+    font-weight:
+        var(----metadata-weight);
+
+    line-height:
+        var(----metadata-height);
+}
+
+
+/* ============================================================
+   SYSTEM MICRO LABEL
+============================================================ */
+
+.portfolio-study__micro-label {
+    margin:
+        0
+        0
+        var(--space-06)
+        !important;
+
+    color:
+        var(--portfolio-muted-ink);
+
+    font-family:
+        var(--metadata-family)
+        !important;
+
+    font-size:
+        var(--metadata-size)
+        !important;
+
+    font-weight:
+        var(--metadata-weight)
+        !important;
+
+    line-height:
+        var(--metadata-line-height)
+        !important;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* ============================================================
+   TYPE SAMPLE
+============================================================ */
+
+.portfolio-study__type-sample {
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        var(--space-04);
+
+    margin-bottom:
+        var(--space-06);
+}
+
+
+.portfolio-study__type-sample
+span:first-child {
+    font-family:
+        var(--h3-family);
+
+    font-size:
+        var(--h3-size);
+
+    font-weight:
+        var(--h3-weight);
+
+    line-height:
+        1;
+}
+
+
+.portfolio-study__type-sample
+span:last-child {
+    font-family:
+        var(--body-family);
+
+    font-size:
+        24px;
+
+    font-weight:
+        400;
+
+    line-height:
+        1.1;
+}
+
+
+/* ============================================================
+   COLOUR SWATCHES
+============================================================ */
+
+.portfolio-study__swatches {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        var(--space-03);
+
+    margin-bottom:
+        var(--space-08);
+}
+
+
+.portfolio-study__swatches span {
+    position: relative;
+
+    display: block;
+
+    aspect-ratio:
+        1;
+
+    border:
+        1px solid
+        var(--portfolio-rule);
+}
+
+
+.portfolio-study__swatches
+span:nth-child(1) {
+    background:
+        #F5F5F5;
+}
+
+
+.portfolio-study__swatches
+span:nth-child(2) {
+    background:
+        #070707;
+}
+
+
+.portfolio-study__swatches
+span:nth-child(3) {
+    background:
+        #666666;
+}
+
+
+.portfolio-study__swatches
+span::after {
+    content:
+        attr(
+            data-hex
+        );
+
+    position: absolute;
+
+    left: 0;
+    bottom:
+        calc(
+            -1 *
+            var(--space-05)
+        );
+
+    font-family:
+        var(--metadata-family);
+
+    font-size:
+        11px;
+
+    line-height:
+        1;
+}
+
+
+/* ============================================================
+   SPACING SAMPLE
+============================================================ */
+
+.portfolio-study__spacing-sample {
+    max-width:
+        280px;
+
+    margin-bottom:
+        var(--space-06)
+        !important;
+
+    font-family:
+        var(--body-large-family)
+        !important;
+
+    font-size: 24px
+    !important;
+
+    font-weight:
+        var(--body-large-weight)
+        !important;
+
+    line-height: var(--body-large-line-height);
+}
+
+/* ============================================================
+   MOTION
+============================================================ */
+
+.portfolio-study__section--motion {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-08);
+}
+
+
+.portfolio-study__section--motion
+.portfolio-study__text-column {
+    width: 100%;
+}
+
+
+.portfolio-study__section--motion
+.portfolio-study__media--motion {
+    position: relative;
+    isolation: isolate;
+    width: 80%;
+    aspect-ratio: 805 / 513;
+    margin: 0;
+}
+
+/* Scope the absolute screen and frame to this case-study mockup. */
+.portfolio-study__media--motion .portfolio-hero__responsimockup-frame {
+    height: 100%;
+}
+
+.portfolio-study__media--motion .portfolio-hero__mobile-preview {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (orientation: portrait),
+       (orientation: landscape) and (min-width: 768px) and (max-width: 1280px) {
+    .portfolio-study__media--motion .portfolio-hero__mobile-preview {
+        display: block;
+    }
+}
+
+/* ============================================================
+   17 — DEVELOPMENT
+============================================================ */
+
+.portfolio-study__development-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    width: 100%;
+
+    margin:
+        var(--portfolio-heading-gap)
+        0;
+
+    border:
+        1px solid
+        var(--portfolio-rule);
+}
+
+
+/* ============================================================
+   DEVELOPMENT CARD
+============================================================ */
+
+.portfolio-study__development-grid
+article {
+    min-width: 0;
+
+    padding: var(--space-06);
+}
+
+
+.portfolio-study__development-grid
+article + article {
+    padding-left:
+        var(--space-05);
+
+    border-left:
+        1px solid
+        var(--portfolio-rule);
+}
+
+
+.portfolio-study__development-grid
+h3 {
+    margin:
+        0
+        0
+        var(--space-04);
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+.portfolio-study__development-grid
+p {
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   18 — ACCESSIBILITY
+============================================================ */
+
+/* Reuse Development's border, dividers, padding and typography. */
+.portfolio-study__accessibility-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+    .portfolio-study__accessibility-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+
+/* ============================================================
+   19 — REFLECTION
+============================================================ */
+
+.portfolio-study__next-steps {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin-top: var(--space-06);
+
+}
+
+
+.portfolio-study__next-steps
+h3 {
+    margin:
+        0
+        0
+        var(--space-04);
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+.portfolio-study__next-steps
+p {
+    margin: 0;
+
+    font-family:
+        var(--body-family);
+
+    font-size:
+        var(--body-size);
+
+    font-weight:
+        var(--body-weight);
+
+    line-height:
+        var(--body-line-height);
+}
+
+
+/* ============================================================
+   CLOSING
+============================================================ */
+
+.portfolio-study__closing {
+    display: flex;
+
+    align-items: center;
+
+    gap: var(--space-02);
+
+    width: fit-content;
+
+    margin:
+        var(--space-10)
+        0
+        0;
+
+    padding-bottom: 0;
+}
+
+
+.portfolio-study__closing p {
+    margin: 0;
+
+    color:
+        var(--portfolio-deep-ink);
+
+    font-family:
+        var(--body-large-family);
+
+    font-size:
+        var(--body-large-size);
+
+    font-weight:
+        var(--body-large-weight);
+
+    line-height:
+        var(--body-large-line-height);
+}
+
+
+/* ============================================================
+   CLOSING ICON
+============================================================ */
+
+.portfolio-study__closing-icon {
+    display: block;
+
+    width: 14px;
+    height: 14px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+}
+
+
+/* ============================================================
+   20 — FOCUS
+============================================================ */
+
+.portfolio-study__toc-link:focus-visible {
+    outline:
+        1px solid
+        var(--portfolio-deep-ink);
+
+    outline-offset:
+        var(--space-02);
+}
+
+
+/* ============================================================
+   LAST SECTION
+============================================================ */
+
+.portfolio-study__section--last {
+    /* Together with the workspace's 48px inset, leave exactly 120px
+       beneath the final content at the bottom of the scroll. */
+    padding-bottom: calc(120px - var(--space-07));
+}
+
+/* ============================================================
+   LENIS — CASE STUDY SCROLL INTEGRATION
+
+   Outer document: Lenis smooth scrolling.
+   Right content: independent Lenis overflow scrolling.
+   Do not apply overflow:hidden or transforms to html/body.
+============================================================ */
+
+html:has(body.portfolio-page) {
+    scroll-behavior: auto;
+}
+
+.portfolio-page .portfolio-study__content {
+    overscroll-behavior-y: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-page .portfolio-study__content {
+        scroll-behavior: auto;
+    }
+}
+
+/* Keep section margins inside the observed Lenis content wrapper. */
+.portfolio-study__scroll-body {
+    display: flow-root;
+}
+
+/* Information architecture: homepage sequence and paired Contact states. */
+.portfolio-study__ia-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--space-06);
+    row-gap: var(--space-06);
+    margin-top: var(--space-06);
+}
+
+.portfolio-study__ia-card {
+    min-width: 0;
+    margin: 0;
+}
+
+.portfolio-study__ia-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 265 / 149;
+    overflow: hidden;
+    outline: 1px solid var(--portfolio-rule);
+    outline-offset: -1px;
+    background: var(--paper);
+}
+
+/* Individual homepage screenshots fit the preview cards. */
+.portfolio-study__ia-preview img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.portfolio-study__ia-card figcaption {
+    margin-top: var(--space-04);
+    color: var(--portfolio-deep-ink);
+    font-family: var(--body-family);
+    font-size: var(--body-size);
+    font-weight: var(--body-weight);
+    line-height: var(--body-line-height);
+}
+
+.portfolio-study__ia-card--contact {
+    grid-column: span 2;
+}
+
+.portfolio-study__ia-contact-previews {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-06);
+}
+
+.portfolio-study__ia-card--contact figcaption {
+    text-align: left;
+}
+
+.portfolio-study__ia-summary {
+    margin-top: var(--space-06);
+}
+
+@media (max-width: 767px) {
+    .portfolio-study__ia-grid {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: var(--space-05);
+    }
+
+    .portfolio-study__ia-card--contact {
+        grid-column: auto;
+    }
+}
+
+/* Responsive strategy: copy beside a mobile portfolio preview. */
+.portfolio-study__section--responsive {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 280px);
+    align-items: center;
+    gap: var(--space-08);
+}
+
+.portfolio-study__section--responsive .portfolio-study__text-column {
+    min-width: 0;
+}
+
+.portfolio-study__phone {
+    position: relative;
+    isolation: isolate;
+    width: 90%;
+    max-width: 280px;
+    aspect-ratio: 989 / 2000;
+    margin: 0;
+    justify-self: center;
+}
+
+.portfolio-study__phone-screen {
+    position: absolute;
+    /* Match the opening in mobile.svg (989 x 2000). */
+    left: 5.561173%;
+    top: 2.4%;
+    width: 88.877654%;
+    height: 95.2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12.2% / 5.6%;
+    background: var(--paper);
+}
+
+.portfolio-study__phone-video {
+    display: block;
+    flex: 0 1 100%;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center center;
+}
+
+.portfolio-study__phone-frame {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+@media (orientation: portrait), (max-width: 767px) {
+    .portfolio-study__section--responsive {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-06);
+    }
+
+    .portfolio-study__phone {
+        width: min(70%, 280px);
+    }
+}
+
+/* Development introduction with the tools used to build the portfolio. */
+.portfolio-study__development-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-08);
+    margin-top: var(--portfolio-heading-gap);
+}
+
+.portfolio-study__development-tools {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-07);
+}
+
+.portfolio-study__development-tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-03);
+    margin: 0;
+}
+
+.portfolio-study__development-tool img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.portfolio-study__development-tool figcaption {
+    color: var(--portfolio-deep-ink);
+    font-family: var(--metadata-family);
+    font-size: var(--metadata-size);
+    font-weight: var(--metadata-weight);
+    line-height: var(--metadata-line-height);
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .portfolio-study__development-intro {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-05);
+    }
+
+    .portfolio-study__development-tools {
+        justify-content: center;
+        gap: var(--space-06);
+    }
+}
