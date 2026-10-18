@@ -3346,4 +3346,11 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
 
 }
 
+/* One shared gap keeps the contact invitation evenly spaced. */
+.contact__content {
+    gap: var(--space-04);
+}
+.contact__content > * {
+    margin-top: 0;
+    margin-bottom: 0;
 }
