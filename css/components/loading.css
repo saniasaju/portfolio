@@ -51,5 +51,6 @@
 ============================================================ */
 
 body.is-loading {
-    overflow: hidden;
+    overflow: clip;
+    touch-action: none;
 }
