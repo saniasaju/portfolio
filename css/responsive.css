@@ -3335,7 +3335,7 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
 
 /* Align the visible hamburger edge with the navbar's shared page gutter. */
 @media (orientation: portrait), (min-width: 768px) and (max-width: 1280px) {
-    .mobile-nav-controls > .mobile-menu-toggle:last-child {
+    .mobile-nav-controls > .mobile-menu-toggle {
         align-items: flex-end;
         padding-right: 0;
     }
