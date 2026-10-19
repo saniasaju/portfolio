@@ -3337,6 +3337,8 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
 @media (orientation: portrait), (min-width: 768px) and (max-width: 1280px) {
     .mobile-nav-controls > .mobile-menu-toggle {
         align-items: flex-end;
+        width: clamp(18px, 4.615vw, 36px);
+        padding-left: 0;
         padding-right: 0;
     }
 
@@ -3353,4 +3355,82 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
 .contact__content > * {
     margin-top: 0;
     margin-bottom: 0;
+}
+
+@media (orientation: portrait) and (max-width: 767px) {
+    .project__media-link--mobile {
+        width: 36%;
+        height: auto;
+    }
+}
+
+/* One sticky viewport inside a stable scroll track on smaller screens. */
+@media (orientation: portrait), (min-width: 768px) and (max-width: 1280px) {
+    pages-section {
+        height: 700svh;
+    }
+    .pages-showcase {
+        position: relative;
+        top: auto;
+        height: 100%;
+    }
+    .pages-showcase__viewport {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        max-height: none;
+    }
+}
+@media (prefers-reduced-motion: reduce) and (orientation: portrait),
+       (prefers-reduced-motion: reduce) and (min-width: 768px) and (max-width: 1280px) {
+    pages-section, .pages-showcase {
+        height: auto;
+    }
+    .pages-showcase__viewport {
+        position: relative;
+        height: auto;
+    }
+}
+
+/* Updated mobile.svg: 1087 × 2114; opening at 104,105 with size 879 × 1904. */
+.mobile-mockup__screen,
+.portfolio-study__phone-screen,
+.gym-study__solution-screen {
+    left: 9.567617%;
+    top: 4.966887%;
+    width: 80.864765%;
+    height: 90.066225%;
+    z-index: 3;
+    border-radius: 0;
+    overflow: hidden;
+    -webkit-mask: url('../assets/images/mockups/mobile-screen-mask.svg') center / 100% 100% no-repeat;
+    mask: url('../assets/images/mockups/mobile-screen-mask.svg') center / 100% 100% no-repeat;
+}
+.mobile-mockup__frame,
+.portfolio-study__phone-frame,
+.gym-study__solution-frame {
+    z-index: 2;
+}
+
+/* Let each mobile project row measure its mockup so the copy gap stays equal. */
+@media (orientation: portrait) and (max-width: 767px) {
+    .project {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .project .project__visual {
+        height: auto;
+        aspect-ratio: auto;
+        display: grid;
+        place-items: center;
+    }
+    .project .project__visual .project__media-link {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        margin: 0 auto;
+    }
 }
