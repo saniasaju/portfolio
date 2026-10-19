@@ -3435,7 +3435,7 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
     }
 }
 
-/* Fill the shadowed phone's masked opening without letterboxing or oversizing. */
+/* Per-context video framing within the shared shadowed phone mask. */
 .mobile-mockup__video,
 .portfolio-study__phone-video,
 .gym-study__solution-video {
@@ -3449,4 +3449,34 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
     max-height: none;
     object-fit: cover;
     object-position: center;
+}
+.home .mobile-mockup__video {
+    transform: scale(1.02);
+    transform-origin: center;
+}
+.portfolio-study__phone-video,
+.gym-study__solution-video {
+    object-fit: contain;
+}
+.campinn-page .mobile-mockup__video {
+    object-position: center bottom;
+}
+
+/* Reveal a viewport already at the top behind the outgoing Projects curtain. */
+@media (prefers-reduced-motion: no-preference) {
+    .home pages-section {
+        margin-top: -100svh;
+    }
+    .home .pages-showcase {
+        margin-top: 0;
+    }
+    .home .pages-showcase__anchor {
+        top: 100svh;
+    }
+    .home .pages-showcase__viewport {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        max-height: none;
+    }
 }
