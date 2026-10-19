@@ -2153,3 +2153,18 @@ html:has(body.portfolio-page) {
         gap: var(--space-06);
     }
 }
+
+/* Keep the desktop header attached to the viewport through the workspace.
+   The shared navbar controller inserts this spacer immediately after it. */
+@media (orientation: landscape) and (max-width: 767px),
+       (orientation: landscape) and (min-width: 1281px) {
+    body.portfolio-page .portfolio-page__navbar {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 1000;
+    }
+    body.portfolio-page .mobile-navbar-space {
+        display: block;
+        height: var(--portfolio-navbar-height);
+    }
+}
