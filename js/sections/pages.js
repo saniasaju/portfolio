@@ -371,7 +371,7 @@ class PagesSection extends HTMLElement {
 
         if (this.projectThree && window.matchMedia("(orientation: portrait), (min-width: 768px) and (max-width: 1280px)").matches) {
             const pinnedHeight = this.querySelector(".pages-showcase__viewport")?.clientHeight || window.innerHeight;
-            this.style.setProperty("--pixels-overlap", `${Math.min(pinnedHeight, this.projectThree.offsetHeight)}px`);
+            this.style.setProperty("--pixels-overlap", `${pinnedHeight}px`);
         } else {
       
             this.style.removeProperty("--pixels-overlap");
