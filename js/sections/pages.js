@@ -370,8 +370,10 @@ class PagesSection extends HTMLElement {
     measureProjectPosition() {
 
         if (this.projectThree && window.matchMedia("(orientation: portrait), (min-width: 768px) and (max-width: 1280px)").matches) {
-            this.style.setProperty("--pixels-overlap", `${Math.min(window.innerHeight, this.projectThree.offsetHeight)}px`);
+            const pinnedHeight = this.querySelector(".pages-showcase__viewport")?.clientHeight || window.innerHeight;
+            this.style.setProperty("--pixels-overlap", `${Math.min(pinnedHeight, this.projectThree.offsetHeight)}px`);
         } else {
+      
             this.style.removeProperty("--pixels-overlap");
         }
 
@@ -446,8 +448,7 @@ class PagesSection extends HTMLElement {
                 ============================================ */
 
                 const viewportHeight =
-                    window.innerHeight || 1;
-
+                    this.querySelector(".pages-showcase__viewport")?.clientHeight || window.innerHeight || 1;
 
                 const scrollPosition =
                     this.getScrollPosition();
