@@ -3484,3 +3484,19 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
         max-height: none;
     }
 }
+
+/* Desktop phone previews share a centered, proportionate screen fit. */
+@media (orientation: landscape) and (max-width: 767px),
+       (orientation: landscape) and (min-width: 1281px) {
+    .home .mobile-mockup__video,
+    .campinn-page .mobile-mockup__video,
+    .portfolio-study__phone-video,
+    .gym-study__solution-video {
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        transform: none;
+        object-fit: contain;
+        object-position: center center;
+    }
+}
