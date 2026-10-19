@@ -103,7 +103,8 @@ body.portfolio-page {
     margin: 0;
     padding: 0;
 
-    overflow-x: hidden;
+    /* Clip sideways overflow without creating a scroll container for the sticky navbar. */
+    overflow-x: clip;
 
     background:
         var(--paper);
