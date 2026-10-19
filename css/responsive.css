@@ -3434,3 +3434,19 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
         margin: 0 auto;
     }
 }
+
+/* Fill the shadowed phone's masked opening without letterboxing or oversizing. */
+.mobile-mockup__video,
+.portfolio-study__phone-video,
+.gym-study__solution-video {
+    position: absolute;
+    inset: 0;
+    transform: none;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: center;
+}
