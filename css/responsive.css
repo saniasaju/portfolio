@@ -3450,33 +3450,37 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
     object-fit: cover;
     object-position: center;
 }
-.home .mobile-mockup__video {
-    transform: scale(1.02);
-    transform-origin: center;
-}
 .portfolio-study__phone-video,
 .gym-study__solution-video {
     object-fit: contain;
+}
+.gym-study__solution-video {
+    transform: scale(1.10);
+    transform-origin: center;
 }
 .campinn-page .mobile-mockup__video {
     object-position: center bottom;
 }
 
-/* Reveal a viewport already at the top behind the outgoing Projects curtain. */
+/* Cover the expanded mobile viewport even as browser controls retract.
+   Use the same stable height for the overlap, anchor, and pinned viewport. */
 @media (prefers-reduced-motion: no-preference) {
     .home pages-section {
-        margin-top: -100svh;
+        margin-top: -100vh;
+        margin-top: -100lvh;
     }
     .home .pages-showcase {
         margin-top: 0;
     }
     .home .pages-showcase__anchor {
-        top: 100svh;
+        top: 100vh;
+        top: 100lvh;
     }
     .home .pages-showcase__viewport {
         position: sticky;
         top: 0;
-        height: 100svh;
+        height: 100vh;
+        height: 100lvh;
         max-height: none;
     }
 }
