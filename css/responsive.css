@@ -3459,6 +3459,7 @@ portfolio-navbar .nav__link[aria-label="Sania Saju — Home"] {
     transform-origin: center;
 }
 .campinn-page .mobile-mockup__video {
+    object-fit: cover;
     object-position: center bottom;
 }
 
